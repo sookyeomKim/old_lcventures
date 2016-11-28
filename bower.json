@@ -1,0 +1,17 @@
+{
+  "name": "lcventures",
+  "description": "",
+  "main": "",
+  "authors": [
+    "sookyeomKim <ikks06luck@naver.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

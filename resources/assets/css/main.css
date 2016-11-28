@@ -1,0 +1,35 @@
+
+
+#main_wrap{ width:100%; height:970px; min-width:1180px; margin:0; padding:0; background: url(../../images/mv.jpg) center top no-repeat; position:relative;}
+
+#main_contents{ width:1198px; margin:0 auto; padding:0; overflow:hidden; position:relative;}
+#main_contents .m_slogan{ font-size:0; line-height:0; position:absolute; top:358px; right:9px;}
+#main_contents .q_menu{ margin:223px 0 0 9px; padding:0; width:560px;}
+#main_contents .q_menu ul{ margin:0; padding:0; overflow:hidden; font-size:0; line-height:0;}
+#main_contents .q_menu ul li{ margin:0 12px 10px 0; padding:0; font-size:0; line-height:0; float:left;}
+#main_contents .q_menu ul li a{ margin:0; padding:0; font-size:0; line-height:0; background:rgba(255,255,255,0.8); display:block;}
+#main_contents .q_menu ul li a:hover{ background:rgba(255,249,202,0.8);}
+
+#main_contents .m_cont{ margin:52px 0 0 9px; padding:0; width:1175px; position:relative;}
+#main_contents .m_cont ul{ margin:0; padding:0; overflow:hidden; font-size:0; line-height:0;}
+#main_contents .m_cont ul li{ margin:0; padding:0; font-size:0; line-height:0; float:left;}
+#main_contents .m_cont ul li a{ margin:0; padding:0; font-size:0; line-height:0;}
+
+#main_contents .m_cont .mNtice{ position:absolute; top:0; left:855px; width:318px; height:178px; background:url(../../images/mc14.png) left top no-repeat;}
+#main_contents .m_cont .mNtice .tt, #main_contents .m_cont .mNtice .tt a{ font-size:0; line-height:0; margin:0; padding:0;}
+#main_contents .m_cont .mNtice .t01{  font-size:0; line-height:0; padding:0 18px; height:31px;}
+#main_contents .m_cont .mNtice .t01 a{ border-top:solid 1px #FFF; font-size:13px; height:18px; line-height:18px; padding:6px 5px; display:block; overflow:hidden; color:#fff;}
+#main_contents .m_cont .mNtice .t01 a:hover{color:#fef298;}
+
+
+
+
+
+
+
+
+
+
+
+
+

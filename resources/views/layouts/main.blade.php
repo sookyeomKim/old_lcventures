@@ -1,0 +1,143 @@
+@extends('master')
+@section('pageTitle', '메인')
+@section('styles')
+@endsection
+@section('main')
+    <!-- Popup 창 -->
+    <div id="main_wrap">
+        <div id="indPopNormal">
+            <div id="popButton"></div>
+            <!--<img src="images/eventpopup_02.jpg" alt="이벤트 팝업">-->
+            <a href="work/work0501.php" id="popMoveButton" target="_blank"></a>
+        </div>
+
+        <div id="popBg" style="display:none">
+            <div id="popPay">
+                <p class="btn_close"><a href="javascript:goPay();"><img src="images/btn_close.png" alt=""></a></p>
+                <div class="popIfame">
+                    <iframe name="payFrame" src="#" frameborder="0" width="675" height="655" marginwidth="0"
+                            marginheight="0" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!--<div id="event-popup-bg">
+            <div id="event-popup-wrap">
+                <a id="event-popup-close">
+                    <img src="images/btn_close.png" alt="닫기 버튼">
+                </a>
+                <a href="./work/work0501.php">
+
+                </a>
+                <a id="event-popup-prevent">
+                    <span>오늘 하루 보지 않기</span>
+                </a>
+            </div>
+        </div>-->
+
+        <!-- 상단 메뉴 시작-->
+        <div id="toparea">
+            <div class="topmenu">
+                <h1><a href="/"><img src="/images/logo.png" alt="lcventures"></a></h1>
+                <ul>
+                    <li class="m01">
+                        <h2><a>ABOUT</a></h2>
+                        <ul>
+                            <li><a href="{{url('vision')}}"><span>About us</span><span class="on">비전</span></a></li>
+                            <li><a href="{{url('ceoIntro')}}"><span>Message to client</span><span
+                                            class="on">CEO인사말</span></a>
+                            </li>
+                            <li><a href="{{url('organization')}}"><span>Organization</span><span
+                                            class="on">조직도</span></a>
+                            </li>
+                            <li><a href="{{url('coporateIdentity')}}"><span>Coporate Identity</span><span
+                                            class="on">엘씨벤처스CI</span></a>
+                            </li>
+                            <li><a href="{{url('contactUs')}}"><span>Contact us</span><span class="on">오시는길</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="m02">
+                        <h2><a>Business</a></h2>
+                        <ul>
+                            <li><a href="{{url('snsMarketing')}}"><span>SNS marketing</span><span
+                                            class="on">SNS마케팅</span></a></li>
+                            <li><a href="{{url('integratedMarketing')}}"><span>Integrated marketing</span><span
+                                            class="on">통합마케팅</span></a>
+                            </li>
+                            <li><a href="{{url('keywordNDisplay')}}"><span>Keyword &amp; Display</span><span
+                                            class="on">키워드/디스플레이마케팅</span></a></li>
+                            <li><a href="{{url('viralMarketing')}}"><span>Viral marketing</span><span class="on">바이럴마케팅</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="m03">
+                        <h2><a>PORTFOLIO</a></h2>
+                        <ul>
+                            <li><a href="{{url('designPortfolio')}}"><span>Design</span><span class="on">디자인</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="m04">
+                        <h2><a>RECRUIT</a></h2>
+                        <ul>
+                            <li><a href="/recruit/recruit01.html"><span>Employment process</span><span
+                                            class="on">채용프로세스</span></a>
+                            </li>
+                            <li><a href="/recruit/recruit02.html"><span>Employment notice</span><span
+                                            class="on">채용공고</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- //상단 메뉴 끝-->
+
+        <!-- 오른쪽 베너 시작-->
+        <div id="rbnn">
+            <ul>
+                <li><a href="http://blog.naver.com/lcventures1/220577987135" target="#"><img src="images/rBnn01.png"
+                                                                                             alt=""></a>
+                </li>
+                <li><a href="http://blog.naver.com/lcventures1" target="#"><img src="images/rBnn02.png" alt=""></a></li>
+                <li><a href="http://plus.kakao.com/home/@%EC%97%98%EC%94%A8%EB%B2%A4%EC%B2%98%EC%8A%A4" target="#"><img
+                                src="images/rBnn03.png" alt=""></a></li>
+                <li>
+                    <a href="https://www.facebook.com/%EC%97%98%EC%94%A8%EB%B2%A4%EC%B2%98%EC%8A%A4-791126930935354/?fref=ts"
+                       target="#"><img src="images/rBnn04.png" alt=""></a></li>
+                <li><a href="javascript:goPay();"><img src="images/rBnn05.png" alt=""></a></li>
+            </ul>
+        </div>
+        <!-- //오른쪽 베너 끝-->
+
+        <div id="main_contents">
+            <p class="m_slogan"><img src="images/mt01.png" alt=""></p>
+            <div class="q_menu">
+                <ul>
+                    <li><a href="work/work0101.html"><img src="images/mc01.png" alt=""></a></li>
+                    <li><a href="portfolio/portfolio01.html"><img src="images/mc03.png" alt=""></a></li>
+                </ul>
+                <ul>
+                    <li><a href="work/work0301.html"><img src="images/mc04.png" alt=""></a></li>
+                    <li><a href="work/work0302.html"><img src="images/mc05.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 푸터 시작 -->
+        <div id="main_footer_area">
+            <div class="footer">
+                <p class="add"><img src="images/foot_img01.png" alt=""></p>
+                <div class="sns">
+                    <a href="mailto:biz@lcventures.co.kr"><img src="images/sns01.png" alt=""></a>
+                    <a href="http://blog.naver.com/lcventures1" target="_blank"><img src="images/sns02.png" alt=""></a>
+                    <!--
+                    <a href="http://goto.kakao.com" target="_blank"><img src="images/sns04.png"  alt=""></a>
+                    <a href="#" onclick="ready00();"><img src="images/sns03.png"  alt=""></a>
+                    -->
+                </div>
+            </div>
+        </div>
+        <!-- //푸터 끝 -->
+    </div>
+@endsection
