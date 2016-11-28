@@ -1,8 +1,5 @@
-#businesscardProject
+#(주)엘씨벤처스 웹사이트
 
-### This Project is consist of sample code
+[사이트 링크](http://www.lcventures.kr/)
 --
-This is my first c-node test project:
-* this program is make businessCard
-* this program can CRUD
-* this program can be sended to people who has an email or phone
+1. 웹사이트 리뉴얼 전 laravel 적용
