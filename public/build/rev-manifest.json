@@ -1,3 +1,8 @@
 {
-  "css/app.css": "css/app-d32e73f243.css"
+  "css/adminApp.css": "css/adminApp-517049ad86.css",
+  "css/app.css": "css/app-b32078441e.css",
+  "css/event.css": "css/event-e3ac8adf6e.css",
+  "js/adminApp.js": "js/adminApp-724b253fe4.js",
+  "js/event.js": "js/event-71e336509c.js",
+  "js/vendor.js": "js/vendor-039467287a.js"
 }

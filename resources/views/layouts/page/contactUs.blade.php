@@ -12,47 +12,49 @@
                     <li class="m01">
                         <h2><a>ABOUT</a></h2>
                         <ul>
-                            <li><a href="{{url('vision')}}"><span>About us</span><span class="on">비전</span></a></li>
-                            <li><a href="/about/about02.html"><span>Message to client</span><span
+                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a></li>
+                            <li><a href="{{url('page/ceoIntro')}}"><span>Message to client</span><span
                                             class="on">CEO인사말</span></a>
                             </li>
-                            <li><a href="/about/about03.html"><span>Organization</span><span class="on">조직도</span></a>
+                            <li><a href="{{url('page/organization')}}"><span>Organization</span><span
+                                            class="on">조직도</span></a>
                             </li>
-                            <li><a href="/about/about04.html"><span>Coporate Identity</span><span
+                            <li><a href="{{url('page/coporateIdentity')}}"><span>Coporate Identity</span><span
                                             class="on">엘씨벤처스CI</span></a>
                             </li>
-                            <li><a href="/about/about05.html"><span>Contact us</span><span class="on">오시는길</span></a>
+                            <li><a href="{{url('page/contactUs')}}"><span>Contact us</span><span class="on">오시는길</span></a>
                             </li>
                         </ul>
                     </li>
                     <li class="m02">
                         <h2><a>Business</a></h2>
                         <ul>
-                            <li><a href="/work/work0101.html"><span>SNS marketing</span><span
+                            <li><a href="{{url('page/snsMarketing')}}"><span>SNS marketing</span><span
                                             class="on">SNS마케팅</span></a></li>
-                            <li><a href="/work/work0201.html"><span>Integrated marketing</span><span
+                            <li><a href="{{url('page/integratedMarketing')}}"><span>Integrated marketing</span><span
                                             class="on">통합마케팅</span></a>
                             </li>
-                            <li><a href="/work/work0302.html"><span>Keyword &amp; Display</span><span
+                            <li><a href="{{url('page/display')}}"><span>Keyword &amp; Display</span><span
                                             class="on">키워드/디스플레이마케팅</span></a></li>
-                            <li><a href="/work/work0401.html"><span>Viral marketing</span><span class="on">바이럴마케팅</span></a>
+                            <li><a href="{{url('page/viralMarketing')}}"><span>Viral marketing</span><span
+                                            class="on">바이럴마케팅</span></a>
                             </li>
                         </ul>
                     </li>
                     <li class="m03">
                         <h2><a>PORTFOLIO</a></h2>
                         <ul>
-                            <li><a href="/portfolio/portfolio01.html"><span>Design</span><span class="on">디자인</span></a>
+                            <li><a href="{{url('page/designPortfolio')}}"><span>Design</span><span class="on">디자인</span></a>
                             </li>
                         </ul>
                     </li>
                     <li class="m04">
                         <h2><a>RECRUIT</a></h2>
                         <ul>
-                            <li><a href="/recruit/recruit01.html"><span>Employment process</span><span
+                            <li><a href="{{url('page/employmentProcess')}}"><span>Employment process</span><span
                                             class="on">채용프로세스</span></a>
                             </li>
-                            <li><a href="/recruit/recruit02.html"><span>Employment notice</span><span
+                            <li><a href="{{url('page/employmentNotice')}}"><span>Employment notice</span><span
                                             class="on">채용공고</span></a>
                             </li>
                         </ul>

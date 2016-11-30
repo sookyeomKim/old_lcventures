@@ -12,47 +12,49 @@
                     <li class="m01">
                         <h2><a>ABOUT</a></h2>
                         <ul>
-                            <li><a href="{{url('vision')}}"><span>About us</span><span class="on">비전</span></a></li>
-                            <li><a href="/about/about02.html"><span>Message to client</span><span
+                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a></li>
+                            <li><a href="{{url('page/ceoIntro')}}"><span>Message to client</span><span
                                             class="on">CEO인사말</span></a>
                             </li>
-                            <li><a href="/about/about03.html"><span>Organization</span><span class="on">조직도</span></a>
+                            <li><a href="{{url('page/organization')}}"><span>Organization</span><span
+                                            class="on">조직도</span></a>
                             </li>
-                            <li><a href="/about/about04.html"><span>Coporate Identity</span><span
+                            <li><a href="{{url('page/coporateIdentity')}}"><span>Coporate Identity</span><span
                                             class="on">엘씨벤처스CI</span></a>
                             </li>
-                            <li><a href="/about/about05.html"><span>Contact us</span><span class="on">오시는길</span></a>
+                            <li><a href="{{url('page/contactUs')}}"><span>Contact us</span><span class="on">오시는길</span></a>
                             </li>
                         </ul>
                     </li>
                     <li class="m02">
                         <h2><a>Business</a></h2>
                         <ul>
-                            <li><a href="/work/work0101.html"><span>SNS marketing</span><span
+                            <li><a href="{{url('page/snsMarketing')}}"><span>SNS marketing</span><span
                                             class="on">SNS마케팅</span></a></li>
-                            <li><a href="/work/work0201.html"><span>Integrated marketing</span><span
+                            <li><a href="{{url('page/integratedMarketing')}}"><span>Integrated marketing</span><span
                                             class="on">통합마케팅</span></a>
                             </li>
-                            <li><a href="/work/work0302.html"><span>Keyword &amp; Display</span><span
+                            <li><a href="{{url('page/display')}}"><span>Keyword &amp; Display</span><span
                                             class="on">키워드/디스플레이마케팅</span></a></li>
-                            <li><a href="/work/work0401.html"><span>Viral marketing</span><span class="on">바이럴마케팅</span></a>
+                            <li><a href="{{url('page/viralMarketing')}}"><span>Viral marketing</span><span
+                                            class="on">바이럴마케팅</span></a>
                             </li>
                         </ul>
                     </li>
                     <li class="m03">
                         <h2><a>PORTFOLIO</a></h2>
                         <ul>
-                            <li><a href="/portfolio/portfolio01.html"><span>Design</span><span class="on">디자인</span></a>
+                            <li><a href="{{url('page/designPortfolio')}}"><span>Design</span><span class="on">디자인</span></a>
                             </li>
                         </ul>
                     </li>
                     <li class="m04">
                         <h2><a>RECRUIT</a></h2>
                         <ul>
-                            <li><a href="/recruit/recruit01.html"><span>Employment process</span><span
+                            <li><a href="{{url('page/employmentProcess')}}"><span>Employment process</span><span
                                             class="on">채용프로세스</span></a>
                             </li>
-                            <li><a href="/recruit/recruit02.html"><span>Employment notice</span><span
+                            <li><a href="{{url('page/employmentNotice')}}"><span>Employment notice</span><span
                                             class="on">채용공고</span></a>
                             </li>
                         </ul>
@@ -64,7 +66,7 @@
 
         <!-- 상단 비주얼 영역 시작 -->
         <div id="visual01">
-            <p class="sub_slogan01"><img src="../images/sub_slogan0203.png"  alt=""></p>
+            <p class="sub_slogan01"><img src="../images/sub_slogan04.png" alt=""></p>
         </div>
         <!-- //상단 비주얼 영역 끝 -->
 
@@ -76,28 +78,17 @@
 
             <!-- 레프트 메뉴 영역 시작 -->
             <div class="leftmenu">
-                <h2>BUSI<span style="display:block; line-height:28px; padding-bottom:12px;">NESS</span></h2>
+                <h2>RE<span style="display:block; line-height:28px; padding-bottom:12px;">CRUIT</span></h2>
                 <ul>
-                    <li><a href="../work/work0101.html">SNS marketing</a></li>
-                    <li><a href="../work/work0201.html">Integrated marketing</a></li>
-                    <li><a class="on" href="../work/work0301.html">Keyword &amp; Display</a></li>
-                    <li><a href="../work/work0401.html">Viral marketing</a></li>
+                    <li><a class="on" href="../recruit/recruit01.html">Employment Process</a></li>
+                    <li><a href="../recruit/recruit02.html">Employment notice</a></li>
                 </ul>
             </div>
             <!-- //레프트 메뉴 영역 끝 -->
 
             <!-- 컨텐츠 영역 시작 -->
             <div class="contents">
-                <div class="tab">
-                    <ul>
-                        <li><a href="../work/work0301.html"><img src="../images/tab_work0301_off.gif"  alt="" ></a></li>
-                        <li><a href="../work/work0302.html"><img src="../images/tab_work0302_on.gif"  alt="" ></a></li>
-                        <li><a href="../work/work0303.html"><img src="../images/tab_work0303_off.gif"  alt="" ></a></li>
-                        <li><a href="../work/work0304.html"><img src="../images/tab_work0304_off.gif"  alt="" ></a></li>
-                    </ul>
-                </div>
-                <div class="l_img01"><img src="../images/work0302_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
-                <div class="l_img01"><img src="../images/work0302_02.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="../images/recruit01.jpg" alt="" style="padding:105px 0 55px 61px;"></div>
             </div>
             <!-- //컨텐츠 영역 끝 -->
 
