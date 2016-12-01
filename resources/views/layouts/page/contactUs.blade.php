@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', '조직도')
+@section('pageTitle', '오시는길')
 @section('styles')
 @endsection
 @section('sub')
@@ -12,7 +12,8 @@
                     <li class="m01">
                         <h2><a>ABOUT</a></h2>
                         <ul>
-                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a></li>
+                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a>
+                            </li>
                             <li><a href="{{url('page/ceoIntro')}}"><span>Message to client</span><span
                                             class="on">CEO인사말</span></a>
                             </li>
@@ -66,7 +67,7 @@
 
         <!-- 상단 비주얼 영역 시작 -->
         <div id="visual01">
-            <p class="sub_slogan01"><img src="../images/sub_slogan0105.png"  alt=""></p>
+            <p class="sub_slogan01"><img src="../images/sub_slogan0105.png" alt=""></p>
         </div>
         <!-- //상단 비주얼 영역 끝 -->
 
@@ -80,11 +81,11 @@
             <div class="leftmenu">
                 <h2>ABOUT</h2>
                 <ul>
-                    <li><a href="../about/about01.html">About us</a></li>
-                    <li><a href="../about/about02.html">Message to client</a></li>
-                    <li><a href="../about/about03.html">Organization</a></li>
-                    <li><a href="../about/about04.html">Coporate Identity</a></li>
-                    <li><a class="on" href="../about/about05.html">Contact us</a></li>
+                    <li><a href="{{url('page/vision')}}">About us</a></li>
+                    <li><a href="{{url('page/ceoIntro')}}">Message to client</a></li>
+                    <li><a href="{{url('page/organization')}}">Organization</a></li>
+                    <li><a href="{{url('page/coporateIdentity')}}">Coporate Identity</a></li>
+                    <li><a class="on" href="{{url('page/contactUs')}}">Contact us</a></li>
                 </ul>
             </div>
             <!-- //레프트 메뉴 영역 끝 -->
@@ -93,13 +94,17 @@
             <div class="contents">
                 <div class="l_img01">
                     <div style="margin:102px 0 0 63px;">
-                        <p><img src="../images/about0401.jpg"  alt="" style="margin:0 0 22px 0;"></p>
-                        <p><img src="../images/about0402.jpg"  alt="" style="margin:0 0 120px 0;"></p>
+                        <p><img src="../images/about0401.jpg" alt="" style="margin:0 0 22px 0;"></p>
+                        <p><img src="../images/about0402.jpg" alt="" style="margin:0 0 120px 0;"></p>
                     </div>
                     <div class="pa_tr" style="right:16px;">
-                        <a href="mailto:biz@lcventures.co.kr"><img src="../images/sns01.png"  alt="" style="padding-left:4px;"></a>
-                        <a href="http://blog.naver.com/lcventures1" target="_blank"><img src="../images/sns02.png"  alt="" style="padding-left:4px;"></a>
-                        <a href="#" onclick="ready00();"><img src="../images/sns03.png"  alt="" style="padding-left:4px;"></a>
+                        <a href="mailto:biz@lcventures.co.kr"><img src="../images/sns01.png" alt=""
+                                                                   style="padding-left:4px;"></a>
+                        <a href="http://blog.naver.com/lcventures1" target="_blank"><img src="../images/sns02.png"
+                                                                                         alt=""
+                                                                                         style="padding-left:4px;"></a>
+                        <a href="#" onclick="ready00();"><img src="../images/sns03.png" alt=""
+                                                              style="padding-left:4px;"></a>
                     </div>
                 </div>
             </div>

@@ -80,11 +80,11 @@
             <div class="leftmenu">
                 <h2>ABOUT</h2>
                 <ul>
-                    <li><a href="../about/about01.html">About us</a></li>
-                    <li><a href="../about/about02.html">Message to client</a></li>
-                    <li><a class="on" href="../about/about03.html">Organization</a></li>
-                    <li><a href="../about/about04.html">Coporate Identity</a></li>
-                    <li><a href="../about/about05.html">Contact us</a></li>
+                    <li><a  href="{{url('page/vision')}}">About us</a></li>
+                    <li><a href="{{url('page/ceoIntro')}}">Message to client</a></li>
+                    <li><a class="on" href="{{url('page/organization')}}">Organization</a></li>
+                    <li><a href="{{url('page/coporateIdentity')}}">Coporate Identity</a></li>
+                    <li><a href="{{url('page/contactUs')}}">Contact us</a></li>
                 </ul>
             </div>
             <!-- //레프트 메뉴 영역 끝 -->

@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', '조직도')
+@section('pageTitle', '채용공고')
 @section('styles')
 @endsection
 @section('sub')
@@ -81,8 +81,8 @@
             <div class="leftmenu">
                 <h2>RE<span style="display:block; line-height:28px; padding-bottom:12px;">CRUIT</span></h2>
                 <ul>
-                    <li><a href="../recruit/recruit01.html">Employment Process</a></li>
-                    <li><a class="on" href="../recruit/recruit02.html">Employment notice</a></li>
+                    <li><a href="{{url('page/employmentProcess')}}">Employment Process</a></li>
+                    <li><a class="on" href="{{url('page/employmentNotice')}}">Employment notice</a></li>
                 </ul>
             </div>
             <!-- //레프트 메뉴 영역 끝 -->

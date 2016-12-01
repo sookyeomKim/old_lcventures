@@ -121,7 +121,7 @@
                 </ul>
                 <ul>
                     <li><a href="{{url('page/keyword')}}"><img src="images/mc04.png" alt=""></a></li>
-                    <li><a href="{{url('display')}}"><img src="images/mc05.png" alt=""></a></li>
+                    <li><a href="{{url('page/display')}}"><img src="images/mc05.png" alt=""></a></li>
                 </ul>
             </div>
         </div>

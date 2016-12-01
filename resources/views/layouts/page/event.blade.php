@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', '조직도')
+@section('pageTitle', '이벤트')
 @section('styles')
     <link rel="stylesheet" href="{{elixir('css/event.css')}}">
     <style>
@@ -228,10 +228,10 @@
             <div class="leftmenu">
                 <h2>BUSI<span style="display:block; line-height:28px; padding-bottom:12px;">NESS</span></h2>
                 <ul>
-                    <li><a href="../work/work0101.html">SNS marketing</a></li>
-                    <li><a href="../work/work0201.html">Integrated marketing</a></li>
-                    <li><a class="on" href="../work/work0301.html">Keyword &amp; Display</a></li>
-                    <li><a href="../work/work0401.html">Viral marketing</a></li>
+                    <li><a href="{{url('page/snsMarketing')}}">SNS marketing</a></li>
+                    <li><a href="{{url('page/integratedMarketing')}}">Integrated marketing</a></li>
+                    <li><a href="{{url('page/display')}}">Keyword &amp; Display</a></li>
+                    <li><a href="{{url('page/viralMarketing')}}">Viral marketing</a></li>
                 </ul>
             </div>
             <!-- //레프트 메뉴 영역 끝 -->

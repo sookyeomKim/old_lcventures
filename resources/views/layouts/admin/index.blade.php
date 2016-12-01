@@ -27,6 +27,7 @@
                         <td>{{$Inquiry->iq_u_email}}</td>
                         <td>{{$Inquiry->iq_cost}}</td>
                         <td>{{$Inquiry->iq_content}}</td>
+                        <td>{{$Inquiry->created_at}}</td>
                     @endforeach
                     </tbody>
                 </table>

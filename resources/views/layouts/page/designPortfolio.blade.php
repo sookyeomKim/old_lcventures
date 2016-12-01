@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', '조직도')
+@section('pageTitle', '디자인')
 @section('styles')
 @endsection
 @section('sub')
@@ -80,7 +80,7 @@
             <div class="leftmenu">
                 <h2>PORT<span style="display:block; line-height:28px; padding-bottom:12px;">FOLIO</span></h2>
                 <ul>
-                    <li><a class="on" href="../portfolio/portfolio01.html">Design</a></li>
+                    <li><a class="on" href="{{url('page/designPortfolio')}}">Design</a></li>
             </div>
             <!-- //레프트 메뉴 영역 끝 -->
 
