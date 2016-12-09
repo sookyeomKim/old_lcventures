@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', 'SNS마케팅')
+@section('pageTitle', '바이럴마케팅')
 @section('styles')
 @endsection
 @section('sub')
@@ -12,7 +12,8 @@
                     <li class="m01">
                         <h2><a>ABOUT</a></h2>
                         <ul>
-                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a></li>
+                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a>
+                            </li>
                             <li><a href="{{url('page/ceoIntro')}}"><span>Message to client</span><span
                                             class="on">CEO인사말</span></a>
                             </li>
@@ -66,7 +67,7 @@
 
         <!-- 상단 비주얼 영역 시작 -->
         <div id="visual01">
-            <p class="sub_slogan01"><img src="../images/sub_slogan02.png"  alt=""></p>
+            <p class="sub_slogan01"><img src="../images/sub_slogan0204.png" alt=""></p>
         </div>
         <!-- //상단 비주얼 영역 끝 -->
 
@@ -80,10 +81,10 @@
             <div class="leftmenu">
                 <h2>BUSI<span style="display:block; line-height:28px; padding-bottom:12px;">NESS</span></h2>
                 <ul>
-                    <li><a class="on" href="{{url('page/snsMarketing')}}">SNS marketing</a></li>
+                    <li><a href="{{url('page/snsMarketing')}}">SNS marketing</a></li>
                     <li><a href="{{url('page/integratedMarketing')}}">Integrated marketing</a></li>
                     <li><a href="{{url('page/display')}}">Keyword &amp; Display</a></li>
-                    <li><a href="{{url('page/viralMarketing')}}">Viral marketing</a></li>
+                    <li><a class="on" href="{{url('page/viralMarketing')}}">Viral marketing</a></li>
                 </ul>
             </div>
             <!-- //레프트 메뉴 영역 끝 -->
@@ -92,14 +93,14 @@
             <div class="contents">
                 <div class="tab">
                     <ul>
-                        <li><a href="{{url('page/snsMarketing')}}"><img src="../images/tab_work0101_on.gif"  alt="" ></a></li>
-                        <li><a href="{{url('page/facebookMarketing')}}"><img src="../images/tab_work0102_off.gif"  alt="" ></a></li>
-                        <li><a href="{{url('page/instagramMarketing')}}"><img src="../images/tab_work0103_off.gif"  alt="" ></a></li>
-                        <li><a href="{{url('page/bandMarketing')}}"><img src="../images/tab_work0104_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/viralMarketing')}}"><img src="../images/tab_work0401_off.gif" alt=""></a></li>
+                        <li><a href="{{url('page/blogMarketing')}}"><img src="../images/tab_work0402_off.gif" alt=""></a></li>
+                        <li><a href="{{url('page/cafeMarketing')}}"><img src="../images/tab_work0403_on.gif" alt=""></a></li>
+                        <li><a href="{{url('page/mediaMarketing')}}"><img src="../images/tab_work0405_off.gif" alt=""></a></li>
                     </ul>
                 </div>
-                <div class="l_img01"><img src="../images/work0101_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
-                <div class="l_img01"><img src="../images/work0101_02.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="../images/work0403_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="../images/work0403_02.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
             </div>
             <!-- //컨텐츠 영역 끝 -->
 

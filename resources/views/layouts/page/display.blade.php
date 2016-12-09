@@ -92,10 +92,10 @@
             <div class="contents">
                 <div class="tab">
                     <ul>
-                        <li><a href="../work/work0301.html"><img src="../images/tab_work0301_off.gif"  alt="" ></a></li>
-                        <li><a href="../work/work0302.html"><img src="../images/tab_work0302_on.gif"  alt="" ></a></li>
-                        <li><a href="../work/work0303.html"><img src="../images/tab_work0303_off.gif"  alt="" ></a></li>
-                        <li><a href="../work/work0304.html"><img src="../images/tab_work0304_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/searchAd')}}"><img src="../images/tab_work0301_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/display')}}"><img src="../images/tab_work0302_on.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/shopingAd')}}"><img src="../images/tab_work0303_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/networkAd')}}"><img src="../images/tab_work0304_off.gif"  alt="" ></a></li>
                     </ul>
                 </div>
                 <div class="l_img01"><img src="../images/work0302_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>

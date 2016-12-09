@@ -19,7 +19,7 @@
         ]); ?>
     </script>
 </head>
-<body >
+<body>
 @yield('main')
 @yield('sub')
 <script src="{{elixir('js/vendor.js')}}"></script>

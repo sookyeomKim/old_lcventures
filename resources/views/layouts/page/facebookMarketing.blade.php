@@ -92,14 +92,14 @@
             <div class="contents">
                 <div class="tab">
                     <ul>
-                        <li><a href="{{url('page/snsMarketing')}}"><img src="../images/tab_work0101_on.gif"  alt="" ></a></li>
-                        <li><a href="{{url('page/facebookMarketing')}}"><img src="../images/tab_work0102_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/snsMarketing')}}"><img src="../images/tab_work0101_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/facebookMarketing')}}"><img src="../images/tab_work0102_on.gif"  alt="" ></a></li>
                         <li><a href="{{url('page/instagramMarketing')}}"><img src="../images/tab_work0103_off.gif"  alt="" ></a></li>
                         <li><a href="{{url('page/bandMarketing')}}"><img src="../images/tab_work0104_off.gif"  alt="" ></a></li>
                     </ul>
                 </div>
-                <div class="l_img01"><img src="../images/work0101_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
-                <div class="l_img01"><img src="../images/work0101_02.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="../images/work0102_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="../images/work0102_02.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
             </div>
             <!-- //컨텐츠 영역 끝 -->
 

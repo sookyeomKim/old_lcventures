@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', 'SNS마케팅')
+@section('pageTitle', '디스플레이마케팅')
 @section('styles')
 @endsection
 @section('sub')
@@ -66,7 +66,7 @@
 
         <!-- 상단 비주얼 영역 시작 -->
         <div id="visual01">
-            <p class="sub_slogan01"><img src="../images/sub_slogan02.png"  alt=""></p>
+            <p class="sub_slogan01"><img src="../images/sub_slogan0203.png"  alt=""></p>
         </div>
         <!-- //상단 비주얼 영역 끝 -->
 
@@ -80,9 +80,9 @@
             <div class="leftmenu">
                 <h2>BUSI<span style="display:block; line-height:28px; padding-bottom:12px;">NESS</span></h2>
                 <ul>
-                    <li><a class="on" href="{{url('page/snsMarketing')}}">SNS marketing</a></li>
+                    <li><a  href="{{url('page/snsMarketing')}}">SNS marketing</a></li>
                     <li><a href="{{url('page/integratedMarketing')}}">Integrated marketing</a></li>
-                    <li><a href="{{url('page/display')}}">Keyword &amp; Display</a></li>
+                    <li><a class="on"href="{{url('page/display')}}">Keyword &amp; Display</a></li>
                     <li><a href="{{url('page/viralMarketing')}}">Viral marketing</a></li>
                 </ul>
             </div>
@@ -92,14 +92,14 @@
             <div class="contents">
                 <div class="tab">
                     <ul>
-                        <li><a href="{{url('page/snsMarketing')}}"><img src="../images/tab_work0101_on.gif"  alt="" ></a></li>
-                        <li><a href="{{url('page/facebookMarketing')}}"><img src="../images/tab_work0102_off.gif"  alt="" ></a></li>
-                        <li><a href="{{url('page/instagramMarketing')}}"><img src="../images/tab_work0103_off.gif"  alt="" ></a></li>
-                        <li><a href="{{url('page/bandMarketing')}}"><img src="../images/tab_work0104_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/searchAd')}}"><img src="../images/tab_work0301_on.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/display')}}"><img src="../images/tab_work0302_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/shopingAd')}}"><img src="../images/tab_work0303_off.gif"  alt="" ></a></li>
+                        <li><a href="{{url('page/networkAd')}}"><img src="../images/tab_work0304_off.gif"  alt="" ></a></li>
                     </ul>
                 </div>
-                <div class="l_img01"><img src="../images/work0101_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
-                <div class="l_img01"><img src="../images/work0101_02.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="../images/work0301_01.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="../images/work0301_02.jpg"  alt="" style="padding:50px 0 0 61px;"></div>
             </div>
             <!-- //컨텐츠 영역 끝 -->
 

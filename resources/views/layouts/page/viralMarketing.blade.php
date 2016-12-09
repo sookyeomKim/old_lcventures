@@ -93,10 +93,10 @@
             <div class="contents">
                 <div class="tab">
                     <ul>
-                        <li><a href="../work/work0401.html"><img src="../images/tab_work0401_on.gif" alt=""></a></li>
-                        <li><a href="../work/work0402.html"><img src="../images/tab_work0402_off.gif" alt=""></a></li>
-                        <li><a href="../work/work0403.html"><img src="../images/tab_work0403_off.gif" alt=""></a></li>
-                        <li><a href="../work/work0405.html"><img src="../images/tab_work0405_off.gif" alt=""></a></li>
+                        <li><a href="{{url('page/viralMarketing')}}"><img src="../images/tab_work0401_on.gif" alt=""></a></li>
+                        <li><a href="{{url('page/blogMarketing')}}"><img src="../images/tab_work0402_off.gif" alt=""></a></li>
+                        <li><a href="{{url('page/cafeMarketing')}}"><img src="../images/tab_work0403_off.gif" alt=""></a></li>
+                        <li><a href="{{url('page/mediaMarketing')}}"><img src="../images/tab_work0405_off.gif" alt=""></a></li>
                     </ul>
                 </div>
                 <div class="l_img01"><img src="../images/work0401_01.jpg" alt="" style="padding:50px 0 0 61px;"></div>
