@@ -15,9 +15,6 @@
             <main class="col-sm-10">
 
             </main>
-            <div class="text-center">
-                {{$Inquiries->links()}}
-            </div>
         </div>
     </div>
 @endsection

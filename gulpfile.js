@@ -1,7 +1,5 @@
+const gulp = require('gulp');
 const elixir = require('laravel-elixir');
-
-require('laravel-elixir-vue-2');
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -15,12 +13,6 @@ require('laravel-elixir-vue-2');
 
 elixir(mix => {
     mix.copy('vendor/bower_components/bootstrap/fonts/**', 'public/build/fonts');
-
-    mix.copy('vendor/bower_components/bootstrap/dist/css/bootstrap.min.css', 'public/css/vendor/bootstrap.css');
-
-    mix.copy('vendor/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css', 'public/css/vendor/bootstrap-material-design.css');
-
-    mix.copy('vendor/bower_components/bootstrap-material-design/dist/css/ripples.min.css', 'public/css/vendor/ripples.css');
 
     mix.copy('resources/assets/css/common.css', 'public/css/common.css');
 
@@ -38,6 +30,8 @@ elixir(mix => {
 
     mix.copy('resources/assets/js/event.js', 'public/js/event.js');
 
+    /*mix.copy('resources/assets/js/jquery.xdomainajax.js', 'public/js/jquery.xdomainajax.js');*/
+
     //compiled main.css
     mix.styles(['common.css', 'main.css'], 'public/css/app.css', 'public/css');
 
@@ -45,7 +39,7 @@ elixir(mix => {
     mix.styles(['event.css'], 'public/css/event.css', 'public/css');
 
     //compiled adminApp.css
-    mix.styles(['vendor/bootstrap.css', 'vendor/bootstrap-material-design.css', 'vendor/ripples.css'], 'public/css/adminApp.css', 'public/css');
+    mix.sass(['admin/adminApp.scss'], 'public/css/adminApp.css', null, {includePaths: ['vendor/bower_components/bootstrap-sass/assets/stylesheets']});
 
     //compiled vendor.js
     mix.scripts(['vendor/jquery.js'], 'public/js/vendor.js', 'public/js');
@@ -58,4 +52,7 @@ elixir(mix => {
 
     mix.version(['css/app.css', 'css/event.css', 'js/vendor.js', 'js/event.js', 'css/adminApp.css', 'js/adminApp.js']);
 });
+
+
+
 
