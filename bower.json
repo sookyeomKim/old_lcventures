@@ -20,6 +20,11 @@
     "bootstrap-material-design": "0.5.10",
     "bootstrap-drawer": "^1.0.6",
     "bootstrap-sass": "^3.3.7",
-    "normalize-scss": "^3.0.3"
+    "normalize-scss": "^3.0.3",
+    "jt.timepicker": "^1.11.9",
+    "datepair.js": "^0.4.15",
+    "jquery-tag-editor": "^1.0.20",
+    "datatables.net": "^1.10.13",
+    "datatables.net-bs": "^1.10.13"
   }
 }

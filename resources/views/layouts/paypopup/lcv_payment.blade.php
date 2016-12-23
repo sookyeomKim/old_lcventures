@@ -17,7 +17,8 @@ $OrderNo = "LCV" . $Date;
 
 <body style="background:#fff;">
 <div id="wrap" style="width:675px; height:670px;">
-    <form name="fm" method="post" action="/resources/views/layouts/popup/AllatPayBasic_PHP/allat_approval.php">
+    <form name="fm" method="post" action="{{url('paypopup/lcv_payment_result')}}">
+        {{ csrf_field() }}
         <input type="hidden" name="allat_shop_id" value="<?=$ShopID?>">
         <input type="hidden" name="allat_order_no" value="<?=$OrderNo?>">
         <input type="hidden" name="allat_amt" value="1100000">
@@ -105,6 +106,7 @@ $OrderNo = "LCV" . $Date;
 //			document.fm.submit();
                 var ret;
                 ret = visible_Approval(dfm);//Function 내부에서 submit을 하게 되어있음.
+                console.log(ret)
                 if (ret.substring(0, 4) != "0000" && ret.substring(0, 4) != "9999") {
                     // 오류 코드 : 0001~9998 의 오류에 대해서 적절한 처리를 해주시기 바랍니다.
                     alert(ret.substring(4, ret.length));     // Message 가져오기
@@ -155,13 +157,11 @@ $OrderNo = "LCV" . $Date;
         return n + d;
     }
 
-
     function PayType(Amount, Type) {
         document.getElementById("PayType").innerHTML = Type;
         document.fm.allat_amt.value = Amount;
         document.fm.allat_product_nm.value = Type;
         document.fm.allat_product_cd.value = Amount;
-
     }
 
 

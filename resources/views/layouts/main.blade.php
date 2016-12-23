@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', '메인')
+@section('pageTitle', '홈')
 @section('styles')
 @endsection
 @section('main')
@@ -155,7 +155,7 @@
                 document.all["payFrame"].src = "#";
                 popBg.style.display = "none";
             } else {
-                document.all["payFrame"].src = "{{url('popup/lcv_payment')}}";
+                document.all["payFrame"].src = "{{url('paypopup/lcv_payment')}}";
                 popBg.style.display = "block";
             }
         }

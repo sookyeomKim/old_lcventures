@@ -1,6 +1,7 @@
 @extends('master')
 @section('pageTitle', '바이두맵-스탠다드 신청')
 @section('styles')
+    <link rel="stylesheet" href="{{elixir('css/baidu.css')}}">
     <style>
         table {
             border-collapse: collapse;
@@ -86,10 +87,12 @@
 
         <!-- 바디 영역 시작 -->
         <div id="container">
-            <form action="" method="post">
-                {{ csrf_field() }}
-                <input type="hidden" name="c_m_phone" value="{{$defaultValue['c_m_name']}}">
-                <input type="hidden" name="c_m_email" value="{{$defaultValue['c_m_email']}}">
+            <form id="register-form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" role="form">
+                <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                <input type="hidden" id="c_i_level" name="c_i_level"
+                       value="{{$defaultValue['c_i_level']}}">
+                <input type="hidden" id="c_m_email" name="c_m_email" value="{{$defaultValue['c_m_email']}}">
+                <input type="hidden" id="c_m_name" name="c_m_name" value="{{$defaultValue['c_m_name']}}">
                 <table>
                     <thead>
                     <tr>
@@ -100,132 +103,223 @@
                     <tbody>
                     <tr>
                         <th colspan="2">상호명</th>
-                        <td><input type="text" value="{{$defaultValue['c_name']}}"></td>
+                        <td><input type="text" id="c_name" name="c_name" value="{{$defaultValue['c_name']}}"></td>
                     </tr>
                     <tr>
                         <th colspan="2">주소</th>
-                        <td><input type="text" value="{{$defaultValue['c_addr']}}"></td>
+                        <td><input type="text" id="c_addr" name="c_addr" value="{{$defaultValue['c_addr']}}"></td>
                     </tr>
                     <tr>
                         <th colspan="2">신청자 연락처</th>
-                        <td><input type="text" value="{{$defaultValue['c_m_phone']}}"></td>
+                        <td><input type="text" id="c_m_phone" name="c_m_phone" value="{{$defaultValue['c_m_phone']}}">
+                        </td>
                     </tr>
                     <tr>
                         <th rowspan="2">업종</th>
                         <th>제1업종</th>
                         <td>
-                            <select id="c_first_cob"></select>
+                            <select id="c_first_cob" name="c_first_cob"></select>
                         </td>
                     </tr>
                     <tr>
                         <th>제2업종</th>
                         <td>
-                            <select id="c_second_cob"></select>
+                            <select id="c_second_cob" name="c_second_cob"></select>
                         </td>
                     </tr>
                     <tr>
                         <th rowspan="3">사업자등록증<br>정보</th>
                         <th>사업자등록번호</th>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="c_crn"
+                                   name="c_crn"></td>
                     </tr>
                     <tr>
                         <th>대표자 성함</th>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="c_rep_name" name="c_rep_name"></td>
                     </tr>
                     <tr>
                         <th>대표자 연락처</th>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="c_rep_phone" name="c_rep_phone"></td>
                     </tr>
                     <tr>
                         <th colspan="2">소개</th>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="c_intro" name="c_intro"></td>
                     </tr>
                     <tr>
                         <th rowspan="3">영업 시간</th>
                         <th>주중</th>
-                        <td></td>
+                        <td>
+                            <div id="weekdays_times">
+                                <input type="text" class="time start" name="weekdays_times_start">
+                                <input type="text" class="time end" name="weekdays_times_end">
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <th>주말</th>
-                        <td></td>
+                        <td>
+                            <div id="weekend_times">
+                                <input type="text" class="time start" name="weekend_times_start">
+                                <input type="text" class="time end" name="weekend_times_end">
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <th>휴일</th>
-                        <td></td>
+                        <td>
+                            <div id="holiday_times">
+                                <input type="text" class="time start" name="holiday_times_start">
+                                <input type="text" class="time end" name="holiday_times_end">
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <th colspan="2">휴무일</th>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="c_holiday" name="c_holiday"></td>
                     </tr>
                     <tr>
-                        <th colspan="2">가격 인당 평균 가격</th>
-                        <td><input type="text"></td>
+                        <th colspan="2">인당 평균 가격</th>
+                        <td><input type="text" id="c_avg_price" name="c_avg_price"></td>
                     </tr>
                     <tr>
                         <th colspan="2">키워드(TAG)</th>
-                        <td><input type="text"></td>
+                        <td>
+                            <textarea id="c_tag" name="c_tag"></textarea>
+                        </td>
                     </tr>
                     <tr>
                         <th colspan="2">교통접근방법</th>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="c_traffic" name="c_traffic"></td>
                     </tr>
                     <tr>
                         <th colspan="2">홈페이지 URL(없으면 공백)</th>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="c_homepage_url" name="c_homepage_url"></td>
                     </tr>
                     </tbody>
                 </table>
 
+                <div>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+
                 <table>
+                    <caption>이미지 첨부</caption>
                     <thead>
                     <tr>
-                        <th>요청 사항</th>
+                        <th>사업자등록증</th>
+
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><textarea></textarea></td>
+                        <td><input type="file" id="c_log_img" name="c_log_img"></td>
+                        <td><input type="file" id="c_bl_img" name="c_bl_img"></td>
                     </tr>
                     </tbody>
                 </table>
+
+                <button type="button" id="baidu_reg_button">전송</button>
             </form>
         </div>
         <!-- //바디 영역 끝 -->
-
     </div>
 @endsection
 @section('scripts')
+    <script src="{{elixir('js/baidu.js')}}"></script>
     <script>
         (function ($) {
             $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('[name="_token"]').val()
-                }
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             });
 
-            $.ajax({
-                type: 'get',
-                url: '{{route('openApi.firstCob')}}',
-                dataType: 'json'
-            }).done(function (data) {
-                $.each($.parseJSON(data), function (key, value) {
-                    var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
-                    var cloneOptionTag = optionTag.clone(true);
-                    $('#c_first_cob').append(cloneOptionTag)
-                });
+            getFisrtCob();
+
+            getSecondCob();
+
+            setTimePicker();
+
+            setTag();
+
+            $('#baidu_reg_button').click(function () {
+                baidu_reg_ajax();
             });
 
-            $.ajax({
-                type: 'get',
-                url: '{{route('openApi.secondCob')}}',
-                dataType: 'json'
-            }).done(function (data) {
-                $.each($.parseJSON(data), function (key, value) {
-                    var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
-                    var cloneOptionTag = optionTag.clone(true);
-                    $('#c_second_cob').append(cloneOptionTag)
+            function getFisrtCob() {
+                $.ajax({
+                    type: 'get',
+                    url: '{{route('openApi.firstCob')}}',
+                    dataType: 'json'
+                }).done(function (data) {
+                    $.each($.parseJSON(data), function (key, value) {
+                        var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
+                        var cloneOptionTag = optionTag.clone(true);
+                        $('#c_first_cob').append(cloneOptionTag)
+                    });
                 });
-            })
+            }
+
+            function getSecondCob() {
+                $.ajax({
+                    type: 'get',
+                    url: '{{route('openApi.secondCob')}}',
+                    dataType: 'json'
+                }).done(function (data) {
+                    $.each($.parseJSON(data), function (key, value) {
+                        var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
+                        var cloneOptionTag = optionTag.clone(true);
+                        $('#c_second_cob').append(cloneOptionTag)
+                    });
+                })
+            }
+
+            function setTimePicker() {
+                $('#weekdays_times .time').timepicker({
+                    'showDuration': true,
+                    'timeFormat': 'g:ia'
+                });
+
+                $('#weekdays_times').datepair();
+
+                $('#weekend_times .time').timepicker({
+                    'showDuration': true,
+                    'timeFormat': 'g:ia'
+                });
+
+                $('#weekend_times').datepair();
+
+                $('#holiday_times .time').timepicker({
+                    'showDuration': true,
+                    'timeFormat': 'g:ia'
+                });
+
+                $('#holiday_times').datepair();
+            }
+
+            function setTag() {
+                $('#c_tag').tagEditor();
+            }
+
+            function baidu_reg_ajax() {
+                console.log(new FormData($('#register-form')));
+                $.ajax({
+                    url: '{{route('baidu.store')}}',
+                    data: new FormData($('#register-form')[0]),
+                    dataType: 'json',
+                    type: 'post',
+                    processData: false,
+                    contentType: false
+                }).done(function (data) {
+                    console.log('성공');
+                    console.log(data)
+                }).fail(function (data) {
+                    console.log('실패');
+                    console.log(data)
+                })
+            }
         })(jQuery)
     </script>
 @endsection

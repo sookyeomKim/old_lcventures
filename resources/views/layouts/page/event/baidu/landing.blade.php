@@ -95,46 +95,65 @@
             </div>
             <!-- //컨텐츠 영역 끝 -->
         </div>
-        <form action="{{url('page/event/baidu/create')}}" method="post">
+        <form id="register-from" method="post">
             <input type="hidden" name="_method" value="get">
-            {{ csrf_field() }}
             <table>
                 <caption>신청자 정보</caption>
                 <tbody>
                 <tr>
                     <td>상호명</td>
-                    <td><input type="text" name="c_name"></td>
+                    <td><input type="text" id="c_name" name="c_name"
+                               placeholder="{{$errors->has('c_name')?$errors->first('c_name') :''}}"
+                               value="{{old('c_name')}}">
+                    </td>
                 </tr>
                 <tr>
                     <td>주소</td>
-                    <td><input type="text" name="c_addr"></td>
+                    <td><input type="text" id="c_addr" name="c_addr"
+                               placeholder="{{$errors->has('c_addr')?$errors->first('c_addr') :''}}"
+                               value="{{old('c_addr')}}"></td>
                 </tr>
                 <tr>
                     <td>성함</td>
-                    <td><input type="text" name="c_m_name"></td>
+                    <td><input type="text" id="c_m_name" name="c_m_name"
+                               placeholder="{{$errors->has('c_m_name')?$errors->first('c_m_name') :''}}"
+                               value="{{old('c_m_name')}}"></td>
                 </tr>
                 <tr>
                     <td>연락처</td>
-                    <td><input type="text" name="c_m_phone"></td>
+                    <td><input type="text" id="c_m_phone" name="c_m_phone"
+                               placeholder="{{$errors->has('c_m_phone')?$errors->first('c_m_phone') :''}}"
+                               value="{{old('c_m_phone')}}"></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td><input type="text" name="c_m_email"></td>
+                    <td><input type="email" id="c_m_email" name="c_m_email"
+                               placeholder="{{$errors->has('c_m_email')?$errors->first('c_m_email') :''}}"
+                               value="{{old('c_m_email')}}"></td>
                 </tr>
                 <tr>
                     <td>레벨(선택)</td>
-                    <td><select name="c_i_level" id="">
-                            <option value="standard">스탠다드</option>
+                    <td>
+                        <select id="c_i_level" name="c_i_level">
+                            <option value="standard" selected="selected">스탠다드</option>
                             <option value="silver">실버</option>
                             <option value="gold">골드</option>
                             <option value="premium">프리미엄</option>
-                        </select></td>
+                        </select>
+                    </td>
                 </tr>
                 </tbody>
             </table>
-            <button type="submit">전송</button>
+            <button type="button" id="register-button">전송</button>
         </form>
     </div>
 @endsection
 @section('scripts')
+    <script>
+        (function ($) {
+            $('#register-button').click(function () {
+                $('#register-from').attr('action', '{{url('page/event/baidu/register')}}' + '/' + $('#c_i_level').val()).submit();
+            });
+        })(jQuery)
+    </script>
 @endsection
