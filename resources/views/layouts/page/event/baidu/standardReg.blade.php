@@ -2,16 +2,6 @@
 @section('pageTitle', '바이두맵-스탠다드 신청')
 @section('styles')
     <link rel="stylesheet" href="{{elixir('css/baidu.css')}}">
-    <style>
-        table {
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-
-        th, td {
-            border: 2px solid #000;
-        }
-    </style>
 @endsection
 @section('sub')
     <div id="wrap">
@@ -78,7 +68,7 @@
 
         <!-- 상단 비주얼 영역 시작 -->
         <div id="visual01">
-            <p class="sub_slogan01"><img src="../images/sub_slogan02.png" alt=""></p>
+            <p class="sub_slogan01"><img src="{{asset('images/sub_slogan02.png')}}" alt=""></p>
         </div>
         <!-- //상단 비주얼 영역 끝 -->
 
@@ -88,6 +78,7 @@
         <!-- 바디 영역 시작 -->
         <div id="container">
             <form id="register-form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" role="form">
+                <input type="hidden" id="next-url" value="{{url('page/event/baidu-landing')}}">;
                 <input type="hidden" name="_token" value="{{ csrf_token()}}">
                 <input type="hidden" id="c_i_level" name="c_i_level"
                        value="{{$defaultValue['c_i_level']}}">
@@ -178,8 +169,8 @@
                         <td><input type="text" id="c_holiday" name="c_holiday"></td>
                     </tr>
                     <tr>
-                        <th colspan="2">인당 평균 가격</th>
-                        <td><input type="text" id="c_avg_price" name="c_avg_price"></td>
+                        <th colspan="2">인당 평균 가격(원)</th>
+                        <td><input type="text" id="c_avg_price" name="c_avg_price" class="number"></td>
                     </tr>
                     <tr>
                         <th colspan="2">키워드(TAG)</th>
@@ -244,6 +235,8 @@
 
             setTag();
 
+            setFormat();
+
             $('#baidu_reg_button').click(function () {
                 baidu_reg_ajax();
             });
@@ -303,8 +296,21 @@
                 $('#c_tag').tagEditor();
             }
 
+            function setFormat() {
+                $('input.number').keyup(function (event) {
+
+                    // 방향키 스킵
+                    if (event.which >= 37 && event.which <= 40) return;
+
+                    // 숫자 포맷팅
+                    // 숫자 의외의 다른 문자는 제거하고 3개의 숫자마다 콤마를 붙혀준다.
+                    $(this).val(function (index, value) {
+                        return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    });
+                });
+            }
+
             function baidu_reg_ajax() {
-                console.log(new FormData($('#register-form')));
                 $.ajax({
                     url: '{{route('baidu.store')}}',
                     data: new FormData($('#register-form')[0]),
@@ -313,11 +319,16 @@
                     processData: false,
                     contentType: false
                 }).done(function (data) {
-                    console.log('성공');
-                    console.log(data)
+                    alert('신청이 완료되었습니다.');
+                    window.location.href = '/';
                 }).fail(function (data) {
-                    console.log('실패');
-                    console.log(data)
+                    if (data.status === 422) {
+                        $.each(JSON.parse(data.responseText), function (key, value) {
+                            /*$("#" + key).parents('.form-group').addClass('has-error').find('.error-text').text(value).css({
+                             'color': 'red'
+                             });*/
+                        })
+                    }
                 })
             }
         })(jQuery)

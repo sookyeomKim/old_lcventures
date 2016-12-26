@@ -18,31 +18,7 @@ class BaiduController extends Controller
 
     public function storeBaidu(Request $request)
     {
-        $this->validate($request, ['c_m_name' => 'required',
-            'c_m_email' => 'required',
-            'c_i_level' => 'required',
-            'c_name' => 'required|max:60',
-            'c_addr' => 'required|max:60',
-            'c_m_phone' => ['required', 'regex:/^(010|011|016|017|018|019)\d{3,4}\d{4}$/', 'max:11'],
-            'c_first_cob' => 'required',
-            'c_second_cob' => 'required',
-            'c_crn' => ['required', 'regex:/^[0-9]+$/'],
-            'c_rep_name' => 'required|max:60',
-            'c_rep_phone' => ['required', 'regex:/^(010|011|016|017|018|019)\d{3,4}\d{4}$/', 'max:11'],
-            'c_intro' => 'required',
-            'weekdays_times_start' => 'required',
-            'weekdays_times_end' => 'required',
-            'weekend_times_start' => 'required',
-            'weekend_times_end' => 'required',
-            'holiday_times_start' => 'required',
-            'holiday_times_end' => 'required',
-            'c_holiday' => 'required',
-            'c_avg_price' => ['required', 'regex:/^[0-9]+$/'],
-            'c_tag' => 'required',
-            'c_traffic' => 'required',
-            'c_log_img' => 'required',
-            'c_bl_img' => 'required'
-        ]);
+        $this->validate($request, Baidu::$Rules);
 
         $task = Baidu::create([
             'c_name' => $request->input('c_name'),

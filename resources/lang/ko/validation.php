@@ -118,6 +118,63 @@ return [
             'max' => '반드시 :max 자리보다 작아야 합니다.',
             'email' => '이메일 형식에 맞지 않습니다.'
         ],
+        'c_first_cob' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_second_cob' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_crn' => [
+            'required' => '필수사항입니다.',
+            'regex' => '숫자만 입력 가능합니다.',
+        ],
+        'c_rep_name' => [
+            'required' => '필수사항입니다.',
+            'max' => '반드시 :max 자리보다 작아야 합니다.',
+        ],
+        'c_rep_phone' => [
+            'required' => '필수사항입니다.',
+            'regex' => '유효하지 않은 전화번호입니다.',
+        ],
+        'c_intro' => [
+            'required' => '필수사항입니다.',
+        ],
+        'weekdays_times_start' => [
+            'required' => '필수사항입니다.',
+        ],
+        'weekdays_times_end' => [
+            'required' => '필수사항입니다.',
+        ],
+        'weekend_times_start' => [
+            'required' => '필수사항입니다.',
+        ],
+        'weekend_times_end' => [
+            'required' => '필수사항입니다.',
+        ],
+        'holiday_times_start' => [
+            'required' => '필수사항입니다.',
+        ],
+        'holiday_times_end' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_holiday' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_avg_price' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_tag' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_traffic' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_log_img' => [
+            'required' => '필수사항입니다.',
+        ],
+        'c_bl_img' => [
+            'required' => '필수사항입니다.',
+        ],
     ],
 
     /*
