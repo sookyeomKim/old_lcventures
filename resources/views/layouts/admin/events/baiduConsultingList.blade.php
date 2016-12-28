@@ -1,5 +1,5 @@
 @extends('adminMaster')
-@section('pageTitle', '어드민-메인')
+@section('pageTitle', '어드민-바이두 리스트')
 @section('styles')
     <link rel="stylesheet" href="{{elixir('css/adminDataTable.css')}}">
 @endsection
@@ -77,7 +77,6 @@
             function setDataTables() {
                 $('#baidu-table').DataTable({
                     scrollX: true,
-                    autoWidth: true,
                     scrollCollapse: true,
                     columnDefs: [
                         {width: 20, targets: 0},

@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+}
+
+.baidu-reg-wrap {
+    width: 988px;
+    margin: 0 auto;
+}
+
+.baidu-reg-wrap table {
+    width: 100%;
+    margin: 40px 0;
+    border-collapse: collapse;
+    border: 2px solid #000;
+}
+
+.baidu-reg-wrap table input {
+    padding-left: 5px;
+}
+
+.baidu-reg-wrap table input, .baidu-reg-wrap table select {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.baidu-reg-wrap th, td {
+    border: 1px solid #000;
+}
+
+.baidu-reg-wrap th {
+    font-weight: bold;
+    background-color: #dcdcdc;
+    padding: 8px;
+}
+
+.baidu-reg-wrap td {
+    position: relative;
+}
+
+.baidu-reg-wrap .subject-th {
+    background-color: #4884fd;
+    color: #fff;
+    border: 2px solid #000;
+    font-size: 16px;
+    padding: 8px !important;
+}
+
+.baidu-reg-wrap .subject-th:nth-child(1) {
+    width: 40%;
+}
+
+.baidu-reg-wrap .one-col-th {
+    border-right: 2px solid #000;
+}
+
+.baidu-reg-wrap .right-col-th {
+    border-right: 2px solid #000;
+}
+
+.baidu-reg-wrap .times-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+}
+
+.baidu-reg-wrap .times-wrap div {
+    display: inline-block;
+    height: 100%;
+    font-size: 12px;
+}
+
+.baidu-reg-wrap .times-left-wrap, .baidu-reg-wrap .times-right-wrap {
+    width: 47.5%;
+}
+
+.baidu-reg-wrap .times-center-wrap {
+    text-align: center;
+    height: 0;
+    width: 5%;
+}
+
+.baidu-reg-wrap .term-wrap {
+    padding: 7px;
+}
+
+.baidu-reg-wrap .term-wrap ul li {
+    padding: 5px 0;
+}
+
+.baidu-reg-wrap .img-reg-table {
+    font-size: 14px;
+}
+
+.baidu-reg-wrap .img-reg-table th {
+    width: 15%;
+    padding: 12px;
+}
+
+.baidu-reg-wrap .img-reg-table td {
+    width: 35%;
+}
+
+.baidu-reg-wrap .upload-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.baidu-reg-wrap .upload-wrap div {
+    height: 100%;
+}
+
+.baidu-reg-wrap .upload-text-wrap {
+    width: 70%;
+    float: left;
+}
+
+.baidu-reg-wrap .upload-button-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 30%;
+    float: right;
+}
+
+.baidu-reg-wrap .upload-button-wrap a {
+    padding: 13px 0;
+    width: 100%;
+    display: inline-block;
+    color: white;
+    background-color: #696969;
+    text-align: center;
+}
+
+.baidu-reg-wrap .upload-button-wrap input.upload-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.baidu-reg-wrap .upload-button::before {
+    content: "등록하기";
+    cursor: pointer;
+    padding: 100px;
+    margin: -10px;
+}
+
+.baidu-reg-wrap .error-message {
+    display: none;
+}
+
+.baidu-reg-wrap .has-error {
+    cursor: pointer;
+}
+
+.baidu-reg-wrap .has-error input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.baidu-reg-wrap .has-error .tag-editor {
+    display: none;
+}
+
+.baidu-reg-wrap .has-error .error-message {
+    display: block;
+    background-color: #fff;
+    color: red;
+    padding: 8px;
+}
+
+#baidu_reg_button {
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: inherit;
+}

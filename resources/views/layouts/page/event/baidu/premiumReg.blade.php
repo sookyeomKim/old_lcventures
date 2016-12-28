@@ -1,17 +1,7 @@
 @extends('master')
-@section('pageTitle', '바이두맵-스탠다드 신청')
+@section('pageTitle', '바이두맵-실버 신청')
 @section('styles')
     <link rel="stylesheet" href="{{elixir('css/baidu.css')}}">
-    <style>
-        table {
-            border-collapse: collapse;
-            border: 2px solid #000;
-        }
-
-        th, td {
-            border: 2px solid #000;
-        }
-    </style>
 @endsection
 @section('sub')
     <div id="wrap">
@@ -78,7 +68,7 @@
 
         <!-- 상단 비주얼 영역 시작 -->
         <div id="visual01">
-            <p class="sub_slogan01"><img src="../images/sub_slogan02.png" alt=""></p>
+            <p class="sub_slogan01"><img src="{{asset('images/sub_slogan02.png')}}" alt=""></p>
         </div>
         <!-- //상단 비주얼 영역 끝 -->
 
@@ -87,266 +77,426 @@
 
         <!-- 바디 영역 시작 -->
         <div id="container">
-            <form action="{{route('baidu.store')}}" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" id="c_m_name" name="c_m_name" value="{{$defaultValue['c_m_name']}}">
-                <input type="hidden" id="c_m_email" name="c_m_email" value="{{$defaultValue['c_m_email']}}">
-                <table>
-                    <thead>
-                    <tr>
-                        <th colspan="2">구분</th>
-                        <th>기재란</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th colspan="2">상호명</th>
-                        <td><input type="text" id="c_name" name="c_name" value="{{$defaultValue['c_name']}}"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">주소</th>
-                        <td><input type="text" id="c_addr" name="c_addr" value="{{$defaultValue['c_addr']}}"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">신청자 연락처</th>
-                        <td><input type="text" id="c_m_phone" name="c_m_phone" value="{{$defaultValue['c_m_phone']}}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th rowspan="2">업종</th>
-                        <th>제1업종</th>
-                        <td>
-                            <select id="c_first_cob" name="c_first_cob"></select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>제2업종</th>
-                        <td>
-                            <select id="c_second_cob" name="c_second_cob"></select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th rowspan="3">사업자등록증<br>정보</th>
-                        <th>사업자등록번호</th>
-                        <td><input type="text" id="c_crn" class="{{ $errors->has('c_crn') ? ' has-error' : '' }}" name="c_crn"></td>
-                    </tr>
-                    <tr>
-                        <th>대표자 성함</th>
-                        <td><input type="text" id="c_rep_name" name="c_rep_name"></td>
-                    </tr>
-                    <tr>
-                        <th>대표자 연락처</th>
-                        <td><input type="text" id="c_rep_phone" name="c_rep_phone"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">소개</th>
-                        <td><input type="text" id="c_intro" name="c_intro"></td>
-                    </tr>
-                    <tr>
-                        <th rowspan="3">영업 시간</th>
-                        <th>주중</th>
-                        <td>
-                            <div id="weekdays_times">
-                                <input type="text" class="time start" name="weekdays_times_start">
-                                <input type="text" class="time end" name="weekdays_times_end">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>주말</th>
-                        <td>
-                            <div id="weekend_times">
-                                <input type="text" class="time start" name="weekend_times_start">
-                                <input type="text" class="time end" name="weekend_times_end">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>휴일</th>
-                        <td>
-                            <div id="holiday_times">
-                                <input type="text" class="time start" name="holiday_times_start">
-                                <input type="text" class="time end" name="holiday_times_end">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">휴무일</th>
-                        <td><input type="text" id="c_holiday" name="c_holiday"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">인당 평균 가격</th>
-                        <td><input type="text" id="c_avg_price" name="c_avg_price"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">키워드(TAG)</th>
-                        <td>
-                            <textarea id="c_tag" name="c_tag"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">교통접근방법</th>
-                        <td><input type="text" id="c_traffic" name="c_traffic"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">홈페이지 URL(없으면 공백)</th>
-                        <td><input type="text" id="c_homepage_url" name="c_homepage_url"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="baidu-reg-wrap">
+                <form id="register-form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" role="form">
+                    <input type="hidden" id="next-url" value="{{url('page/event/baidu-landing')}}">
+                    <input type="hidden" id="baidu-store-url" value="{{route('baidu.store')}}">
+                    <input type="hidden" id="firstCob-url" value="{{route('openApi.firstCob')}}">
+                    <input type="hidden" id="secondCob-url" value="{{route('openApi.secondCob')}}">
+                    <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                    <input type="hidden" id="c_i_level" name="c_i_level"
+                           value="{{$defaultValue['c_i_level']}}">
+                    <input type="hidden" id="c_m_email" name="c_m_email" value="{{$defaultValue['c_m_email']}}">
+                    <input type="hidden" id="c_m_name" name="c_m_name" value="{{$defaultValue['c_m_name']}}">
+                    <table class="info-reg-table">
+                        <thead>
+                        <tr>
+                            <th colspan="2" class="one-col-th subject-th">구분</th>
+                            <th class="one-col-th subject-th">기재란</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_name">상호명</label></th>
+                            <td><input type="text" id="c_name" name="c_name" class="baidu-reg-input"
+                                       value="{{$defaultValue['c_name']}}"></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_addr">주소</label></th>
+                            <td><input type="text" id="c_addr" name="c_addr" class="baidu-reg-input"
+                                       value="{{$defaultValue['c_addr']}}"></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_m_phone">신청자 연락처</label></th>
+                            <td><input type="text" id="c_m_phone" name="c_m_phone" class="baidu-reg-input"
+                                       value="{{$defaultValue['c_m_phone']}}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2" class="left-col-th">업종</th>
+                            <th class="right-col-th"><label for="c_first_cob">제1업종</label></th>
+                            <td>
+                                <select id="c_first_cob" name="c_first_cob" class="baidu-reg-select"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="right-col-th"><label for="c_second_cob">제2업종</label></th>
+                            <td>
+                                <select id="c_second_cob" name="c_second_cob" class="baidu-reg-select"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3" class="left-col-th">사업자등록증<br>정보</th>
+                            <th class="right-col-th"><label for="c_crn">사업자등록번호</label></th>
+                            <td>
+                                <input type="text" id="c_crn"
+                                       name="c_crn" class="c_crn baidu-reg-input" placeholder="ex)123-45-67890">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="right-col-th"><label for="c_rep_name">대표자 성함</label></th>
+                            <td>
+                                <input type="text" id="c_rep_name" name="c_rep_name" class="baidu-reg-input"
+                                       placeholder="ex)김대표">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="right-col-th"><label for="c_rep_phone">대표자 연락처</label></th>
+                            <td>
+                                <input type="text" id="c_rep_phone" name="c_rep_phone" class="baidu-reg-input"
+                                       placeholder="ex)01012345678">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_intro">소개</label></th>
+                            <td>
+                                <input type="text" id="c_intro" name="c_intro" class="baidu-reg-input">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3" class="left-col-th">영업 시간</th>
+                            <th class="right-col-th"><label for="weekdays_times_start">주중</label></th>
+                            <td>
+                                <div id="weekdays_times" class="times-wrap">
+                                    <div class="times-left-wrap">
+                                        <input type="text" id="weekdays_times_start" class="time start"
+                                               name="weekdays_times_start">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="times-center-wrap">
+                                        &sim;
+                                    </div>
+                                    <div class="times-right-wrap">
+                                        <input type="text" id="weekdays_times_end" class="time end"
+                                               name="weekdays_times_end">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="right-col-th"><label for="weekend_times_start">주말</label></th>
+                            <td>
+                                <div id="weekend_times" class="times-wrap">
+                                    <div class="times-left-wrap">
+                                        <input type="text" id="weekend_times_start" class="time start"
+                                               name="weekend_times_start">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="times-center-wrap">
+                                        &sim;
+                                    </div>
+                                    <div class="times-right-wrap">
+                                        <input type="text" id="weekend_times_end" class="time end"
+                                               name="weekend_times_end">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="right-col-th"><label for="holiday_times_start">휴일</label></th>
+                            <td>
+                                <div id="holiday_times" class="times-wrap">
+                                    <div class="times-left-wrap">
+                                        <input type="text" id="holiday_times_start" class="time start"
+                                               name="holiday_times_start">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="times-center-wrap">
+                                        &sim;
+                                    </div>
+                                    <div class="times-right-wrap">
+                                        <input type="text" id="holiday_times_end" class="time end"
+                                               name="holiday_times_end">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_holiday">휴무일</label></th>
+                            <td>
+                                <input type="text" id="c_holiday" name="c_holiday" class="baidu-reg-input"
+                                       placeholder="ex)월화수">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_avg_price">인당 평균 가격(원)</label></th>
+                            <td>
+                                <input type="text" id="c_avg_price" name="c_avg_price"
+                                       class="c_avg_price baidu-reg-input" placeholder="ex)10,000">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_tag">키워드(TAG)</label></th>
+                            <td>
+                                <textarea id="c_tag" name="c_tag"></textarea>
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_traffic">교통접근방법</label></th>
+                            <td>
+                                <input type="text" id="c_traffic" name="c_traffic" class="baidu-reg-input"
+                                       placeholder="ex)선릉역 7번 출구 도보 1분 거리">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="one-col-th"><label for="c_homepage_url">홈페이지 URL(없으면 공백)</label></th>
+                            <td>
+                                <input type="text" id="c_homepage_url" name="c_homepage_url" class="baidu-reg-input">
+                                <p class="error-message">
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                <div>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="subject-th">요청사항</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="term-wrap">
+                                <ul>
+                                    <li>&ast;결제 : 신청 및 등록한지 4주 후, 지도서비스 등록 확인 가능하며, 등록 확인 후 결제 진행</li>
+                                    <li>계좌이체 / 세금계산서 발행</li>
+                                    <li>계좌정보 : 기업은행 00-0000-000-000 (예금주 주식회사 엘씨벤처스)</li>
+                                    <li>&ast;사업자등록증 1부 첨부</li>
+                                    <li>&ast;대표사진 1장(간판이 보이는 상점의 정면 모습)</li>
+                                    <li>&ast;추가사진 1장~8장(실내, 메뉴, 상품, 상차림 등의 모습)</li>
+                                    <li>&ast;동영상(소개 등, 30초 이내)</li>
+                                    <li>&ast;기업(또는 브랜드)로고</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                <table>
-                    <caption>이미지 첨부</caption>
-                    <thead>
-                    <tr>
-                        <th>사업자등록증</th>
+                    <table class="img-reg-table">
+                        <thead>
+                        <tr>
+                            <th class="subject-th" colspan="4">이미지 첨부</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><label for="c_bl_img">사업자등록증</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_bl_img" name="c_bl_img" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <th><label for="c_rep_img">대표사진</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_rep_img" name="c_rep_img" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_add_img1">추가사진1</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img1" name="c_add_img1" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <th><label for="c_add_img2">추가사진2</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img2" name="c_add_img2" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_add_img3">추가사진3</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img3" name="c_add_img3" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <th><label for="c_add_img4">추가사진4</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img4" name="c_add_img4" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_add_img5">추가사진5</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img5" name="c_add_img5" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <th><label for="c_add_img6">추가사진6</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img6" name="c_add_img6" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_add_img7">추가사진7</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img7" name="c_add_img7" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <th><label for="c_add_img8">추가사진8</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_img8" name="c_add_img8" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_log_img">기업로고</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_log_img" name="c_log_img" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <th><label for="c_add_video">동영상</label></th>
+                            <td>
+                                <div class="upload-wrap">
+                                    <div class="upload-text-wrap">
+                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                        <p class="error-message">
+                                        </p>
+                                    </div>
+                                    <div class="upload-button-wrap">
+                                        <a>등록하기</a>
+                                        <input type="file" id="c_add_video" name="c_add_video" class="upload-button"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><input type="file" name="c_log_img"></td>
-                        <td><input type="file" name="c_bl_img"></td>
-                        <td><input type="file" name="c_rep_img"></td>
-                        <td><input type="file" name="c_add_img1"></td>
-                        <td><input type="file" name="c_add_img1"></td>
-                        <td><input type="file" name="c_add_img2"></td>
-                        <td><input type="file" name="c_add_img3"></td>
-                        <td><input type="file" name="c_add_img4"></td>
-                        <td><input type="file" name="c_add_img5"></td>
-                        <td><input type="file" name="c_add_img6"></td>
-                        <td><input type="file" name="c_add_img7"></td>
-                        <td><input type="file" name="c_add_img8"></td>
-                        <td><input type="file" name="c_add_video"></td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <button type="submit">전송</button>
-            </form>
+                    <a id="baidu_reg_button" disabled="disabled">
+                        <img src="{{asset('images/baiduRegButton2.png')}}" alt="바이두신청서 전송하기">
+                    </a>
+                </form>
+            </div>
         </div>
         <!-- //바디 영역 끝 -->
     </div>
 @endsection
 @section('scripts')
     <script src="{{elixir('js/baidu.js')}}"></script>
-    <script>
-        (function ($) {
-            //ajax 토큰
-            $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            });
-
-            getFisrtCob();
-
-            getSecondCob();
-
-            setTimePicker();
-
-            setTag();
-
-            $('#baidu_reg_button').click(function () {
-                baidu_reg_ajax();
-            });
-
-            function getFisrtCob() {
-                $.ajax({
-                    type: 'get',
-                    url: '{{route('openApi.firstCob')}}',
-                    dataType: 'json'
-                }).done(function (data) {
-                    $.each($.parseJSON(data), function (key, value) {
-                        var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
-                        var cloneOptionTag = optionTag.clone(true);
-                        $('#c_first_cob').append(cloneOptionTag)
-                    });
-                });
-            }
-
-            function getSecondCob() {
-                $.ajax({
-                    type: 'get',
-                    url: '{{route('openApi.secondCob')}}',
-                    dataType: 'json'
-                }).done(function (data) {
-                    $.each($.parseJSON(data), function (key, value) {
-                        var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
-                        var cloneOptionTag = optionTag.clone(true);
-                        $('#c_second_cob').append(cloneOptionTag)
-                    });
-                })
-            }
-
-            function setTimePicker() {
-                $('#weekdays_times .time').timepicker({
-                    'showDuration': true,
-                    'timeFormat': 'g:ia'
-                });
-
-                $('#weekdays_times').datepair();
-
-                $('#weekend_times .time').timepicker({
-                    'showDuration': true,
-                    'timeFormat': 'g:ia'
-                });
-
-                $('#weekend_times').datepair();
-
-                $('#holiday_times .time').timepicker({
-                    'showDuration': true,
-                    'timeFormat': 'g:ia'
-                });
-
-                $('#holiday_times').datepair();
-            }
-
-            function setTag() {
-                $('#c_tag').tagEditor();
-            }
-
-            function baidu_reg_ajax() {
-                /*var formData = {
-                 c_i_level: $('#c_i_level').val(),
-                 c_name: $('#c_name').val(),
-                 c_addr: $('#c_addr').val(),
-                 c_m_name: $('#c_m_name').val(),
-                 c_m_phone: $('#c_m_phone').val(),
-                 c_m_email: $('#c_m_email').val(),
-                 c_first_cob: $('#c_first_cob').val(),
-                 c_second_cob: $('#c_second_cob').val(),
-                 c_crn: $('#c_crn').val(),
-                 c_rep_name: $('#c_rep_name').val(),
-                 c_rep_phone: $('#c_rep_phone').val(),
-                 c_intro: $('#c_intro').val(),
-                 weekdays_times: $('#weekdays_times').val(),
-                 weekend_times: $('#weekend_times').val(),
-                 holiday_times: $('#holiday_times').val(),
-                 c_holiday: $('#c_holiday').val(),
-                 c_avg_price: $('#c_avg_price').val(),
-                 c_tag: $('#c_tag').val(),
-                 c_traffic: $('#c_traffic').val(),
-                 c_homepage_url: $('#c_homepage_url').val()
-                 };*/
-
-                /*$.ajax({
-                 type: 'post',
-                 dataType: 'json',
-                 url:{{}},
-                 data: formData
-                 }).done(function (data) {
-
-                 }).fail(function () {
-
-                 });*/
-            }
-        })(jQuery)
-    </script>
 @endsection

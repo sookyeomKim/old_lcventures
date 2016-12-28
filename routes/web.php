@@ -18,10 +18,7 @@ Route::group(['prefix' => 'openApi'], function () {
     Route::get('secondCob', ['as' => 'openApi.secondCob', 'uses' => 'ApiController@getSecondCob']);
 });
 
-Route::resource('inquiry', 'InquiryController');
-
 Route::get('page/{pageName}', 'PageController@page');
-
 
 Route::group(['prefix' => 'page/event'], function () {
     Route::get('{eventPageName}', 'EventPageController@getPage');
@@ -30,6 +27,10 @@ Route::group(['prefix' => 'page/event'], function () {
 
 Route::group(['prefix' => 'baidu'], function () {
     Route::post('/', ['as' => 'baidu.store', 'uses' => 'BaiduController@storeBaidu']);
+});
+
+Route::group(['prefix' => 'searchNshoping'], function () {
+    Route::post('/', ['as' => 'searchNshoping.store', 'uses' => 'InquiryController@storeSearchNshoping']);
 });
 
 Route::group(['middleware' => ['auth', 'roles'], 'roles' => ['Root']], function () {
@@ -43,6 +44,11 @@ Route::group(['middleware' => ['auth', 'roles'], 'roles' => ['Root']], function 
             Route::group(['prefix' => 'baidu'], function () {
                 Route::get('/', ['as' => 'admin.events.baidu.index', 'uses' => 'AdminController@baiduIndex']);
                 Route::get('baidu', ['as' => 'baidu.list', 'uses' => 'BaiduController@getBaidu']);
+            });
+
+            Route::group(['prefix' => 'searchNshoping'], function () {
+                Route::get('/', ['as' => 'admin.events.searchNshoping.index', 'uses' => 'AdminController@searchNshopingIndex']);
+                Route::get('baidu', ['as' => 'searchNshoping.list', 'uses' => 'InquiryController@getSearchNshoping']);
             });
         });
     });

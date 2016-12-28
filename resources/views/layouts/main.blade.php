@@ -1,14 +1,46 @@
 @extends('master')
 @section('pageTitle', '홈')
 @section('styles')
+    <style>
+
+
+        /*#baiduPopNormal {
+            position: absolute;
+            top: 23px;
+            left: 20px;
+            width: 328px;
+            height: 450px;
+            background-image: url(../../../public/images/baiduPopImg.jpg);
+            background-size: cover;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            z-index: 9999;
+        }
+
+        #baiduPopButton{
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            margin-left: 263px;
+        }*/
+    </style>
 @endsection
 @section('main')
     <!-- Popup 창 -->
     <div id="main_wrap">
-        <div id="indPopNormal">
-            <div id="popButton"></div>
-            <!--<img src="images/eventpopup_02.jpg" alt="이벤트 팝업">-->
-            <a href="{{url('page/event')}}" id="popMoveButton" target="_blank"></a>
+        <div id="indPop">
+            <div class="indPop-wrap">
+                <div id="indPopButton"></div>
+                <a href="{{url('page/event/searchNshoping-landing')}}" id="indPopMoveButton" target="_blank"></a>
+            </div>
+        </div>
+
+        <div id="baiduPop">
+            <div class="baiduPop-wrap">
+                <div id="baiduPopButton"></div>
+                <a href="{{url('page/event/baidu-landing')}}" id="baiduPopMoveButton" target="_blank"></a>
+            </div>
         </div>
 
         <div id="popBg" style="display:none">
@@ -43,7 +75,8 @@
                     <li class="m01">
                         <h2><a>ABOUT</a></h2>
                         <ul>
-                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a></li>
+                            <li><a href="{{url('page/vision')}}"><span>About us</span><span class="on">비전</span></a>
+                            </li>
                             <li><a href="{{url('page/ceoIntro')}}"><span>Message to client</span><span
                                             class="on">CEO인사말</span></a>
                             </li>
@@ -144,20 +177,25 @@
 @endsection
 @section('scripts')
     <script>
-        $(function () {
-            $("#popButton").click(function () {
-                $("#indPopNormal").hide();
+        (function ($) {
+            $("#indPopButton").click(function () {
+                $("#indPop").hide();
             });
-        });
 
-        function goPay() {
-            if (popBg.style.display == "block") {
-                document.all["payFrame"].src = "#";
-                popBg.style.display = "none";
-            } else {
-                document.all["payFrame"].src = "{{url('paypopup/lcv_payment')}}";
-                popBg.style.display = "block";
+            $("#baiduPopButton").click(function () {
+                console.log("ddd")
+                $("#baiduPop").hide();
+            });
+
+            function goPay() {
+                if (popBg.style.display == "block") {
+                    document.all["payFrame"].src = "#";
+                    popBg.style.display = "none";
+                } else {
+                    document.all["payFrame"].src = "{{url('paypopup/lcv_payment')}}";
+                    popBg.style.display = "block";
+                }
             }
-        }
+        })(jQuery);
     </script>
 @endsection

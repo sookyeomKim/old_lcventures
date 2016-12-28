@@ -1,23 +1,131 @@
-#main_wrap{ width:100%; height:970px; min-width:1180px; margin:0; padding:0; background:#000 url(../../images/mv.jpg) center top no-repeat; position:relative;}
+#main_wrap {
+    width: 100%;
+    height: 970px;
+    min-width: 1180px;
+    margin: 0;
+    padding: 0;
+    background: #000 url(../../images/mv.jpg) center top no-repeat;
+    position: relative;
+}
 
-#main_contents{ width:1198px; margin:0 auto; padding:0; overflow:hidden; position:relative;top:77px;}
-#main_contents .m_slogan{ font-size:0; line-height:0; position:absolute; top:335px; right:35px;}
-#main_contents .q_menu{ margin:223px 0 0 9px; padding:0; width:560px;}
-#main_contents .q_menu ul{ margin:0; padding:0; overflow:hidden; font-size:0; line-height:0;}
-#main_contents .q_menu ul li{ margin:0 12px 10px 0; padding:0; font-size:0; line-height:0; float:left;}
-#main_contents .q_menu ul li a{ margin:0; padding:0; font-size:0; line-height:0; display:block;}
-#main_contents .q_menu ul li a:hover{ background:rgba(255,255,0,0.5);}
+#main_contents {
+    width: 1198px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    top: 77px;
+}
 
-#main_contents .m_cont{ margin:52px 0 0 9px; padding:0; width:1175px; position:relative;}
-#main_contents .m_cont ul{ margin:0; padding:0; overflow:hidden; font-size:0; line-height:0;}
-#main_contents .m_cont ul li{ margin:0; padding:0; font-size:0; line-height:0; float:left;}
-#main_contents .m_cont ul li a{ margin:0; padding:0; font-size:0; line-height:0;}
+#main_contents .m_slogan {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 335px;
+    right: 35px;
+}
 
-#main_contents .m_cont .mNtice{ position:absolute; top:0; left:855px; width:318px; height:178px; background:url(../../images/mc14.png) left top no-repeat;}
-#main_contents .m_cont .mNtice .tt, #main_contents .m_cont .mNtice .tt a{ font-size:0; line-height:0; margin:0; padding:0;}
-#main_contents .m_cont .mNtice .t01{  font-size:0; line-height:0; padding:0 18px; height:31px;}
-#main_contents .m_cont .mNtice .t01 a{ border-top:solid 1px #FFF; font-size:13px; height:18px; line-height:18px; padding:6px 5px; display:block; overflow:hidden; color:#fff;}
-#main_contents .m_cont .mNtice .t01 a:hover{color:#fef298;}
+#main_contents .q_menu {
+    margin: 223px 0 0 9px;
+    padding: 0;
+    width: 560px;
+}
+
+#main_contents .q_menu ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+}
+
+#main_contents .q_menu ul li {
+    margin: 0 12px 10px 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    float: left;
+}
+
+#main_contents .q_menu ul li a {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    display: block;
+}
+
+#main_contents .q_menu ul li a:hover {
+    background: rgba(255, 255, 0, 0.5);
+}
+
+#main_contents .m_cont {
+    margin: 52px 0 0 9px;
+    padding: 0;
+    width: 1175px;
+    position: relative;
+}
+
+#main_contents .m_cont ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+}
+
+#main_contents .m_cont ul li {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    float: left;
+}
+
+#main_contents .m_cont ul li a {
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+}
+
+#main_contents .m_cont .mNtice {
+    position: absolute;
+    top: 0;
+    left: 855px;
+    width: 318px;
+    height: 178px;
+    background: url(../../images/mc14.png) left top no-repeat;
+}
+
+#main_contents .m_cont .mNtice .tt, #main_contents .m_cont .mNtice .tt a {
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#main_contents .m_cont .mNtice .t01 {
+    font-size: 0;
+    line-height: 0;
+    padding: 0 18px;
+    height: 31px;
+}
+
+#main_contents .m_cont .mNtice .t01 a {
+    border-top: solid 1px #FFF;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    padding: 6px 5px;
+    display: block;
+    overflow: hidden;
+    color: #fff;
+}
+
+#main_contents .m_cont .mNtice .t01 a:hover {
+    color: #fef298;
+}
 
 #event-popup-bg {
     position: fixed;
@@ -56,40 +164,36 @@
     color: #fff;
 }
 
-#indPopNormal {
+#baiduPop {
     position: absolute;
-    top: 23px;
+    top: 20px;
     left: 20px;
-    width: 308px;
-    height: 450px;
-    background-image: url(../../images/eventpopup_02.jpg);
-    background-size: cover;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     z-index: 9999;
 }
 
-#popButton{
-    width: 45px;
-    height: 45px;
+#baiduPop .baiduPop-wrap {
+    position: relative;
+    width: 500px;
+    height: 450px;
+    background-image: url(../../images/baiduPopImg.jpg);
+    background-size: cover;
+}
+
+#baiduPopButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-    margin-left: 263px;
 }
 
-#popMoveButton{
-    height: 60px;
-    width: 255px;
-    margin-left: 28px;
-    margin-top: 330px;
-    display: inline-block;
+#baiduPopMoveButton {
+    position: absolute;
+    bottom: 25px;
+    left: 70px;
+    width: 360px;
+    height: 44px;
+    background-image: url(../../images/baiduButton.png);
+    background-size: cover;
 }
-
-
-
-
-
-
-
-
-

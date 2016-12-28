@@ -214,7 +214,7 @@
 
         <!-- 상단 비주얼 영역 시작 -->
         <div id="visual01">
-            <p class="sub_slogan01"><img src="../images/sub_slogan0203.png" alt=""></p>
+            <p class="sub_slogan01"><img src="{{asset('images/sub_slogan0203.png')}}" alt=""></p>
         </div>
         <!-- //상단 비주얼 영역 끝 -->
 
@@ -238,9 +238,10 @@
 
             <!-- 컨텐츠 영역 시작 -->
             <div class="contents">
-                <div class="l_img01"><img src="../images/work0501_03.jpg" alt="" style="padding:50px 0 0 61px;"></div>
+                <div class="l_img01"><img src="{{asset('images/work0501_03.jpg')}}" alt=""
+                                          style="padding:50px 0 0 61px;"></div>
                 <a data-toggle="modal" data-target="#inquiryModal">
-                    <img src="../images/work0501_02.jpg" alt="" style="margin-left: 163px; cursor: pointer;">
+                    <img src="{{asset('images/work0501_02.jpg')}}" alt="" style="margin-left: 163px; cursor: pointer;">
                 </a>
             </div>
             <!-- //컨텐츠 영역 끝 -->
@@ -323,7 +324,7 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">빠른상담 문의</button>
                     </div>
-                    <img src="./../images/work0501_04.jpg">
+                    <img src="{{asset('images/work0501_04.jpg')}}">
                 </form>
             </div>
         </div>
@@ -383,7 +384,7 @@
                     iq_content: $('#inquiry_content').val(),
                 };
                 ajaxRequest = $.ajax({
-                    url: "{{route('inquiry.store')}}",
+                    url: "{{route('searchNshoping.store')}}",
                     type: "POST",
                     dataType: 'json',
                     data: formData
@@ -399,7 +400,6 @@
                 });
 
                 ajaxRequest.fail(function (res) {
-                    console.log(res)
                     alert("실패")
                 })
             });

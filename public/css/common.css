@@ -13,7 +13,7 @@ input,textarea,select{font-family:'Nanum Gothic', 나눔고딕, NanumGothic, dot
 
 /* html tag */
 html {width:100%;}
-body {position:relative; width:100%; font-family:'Nanum Gothic', 나눔고딕, NanumGothic, dotum, sans-serif; font-size:12px; z-index:1; background:#ffffff url(../../images/line00.gif) center top repeat-y; z-index:99;}
+body {position:relative; width:100%; font-family:'Nanum Gothic', 나눔고딕, NanumGothic, dotum, sans-serif; font-size:12px; z-index:1; /*background:#ffffff url(../../images/line00.gif) center top repeat-y;*/ z-index:99;}
 
 
 /* 말줄임 */

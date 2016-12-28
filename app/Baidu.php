@@ -16,7 +16,7 @@ class Baidu extends Model
         'c_m_phone' => ['required', 'regex:/^(010|011|016|017|018|019)\d{3,4}\d{4}$/', 'max:11'],
         'c_first_cob' => 'required',
         'c_second_cob' => 'required',
-        'c_crn' => ['required', 'regex:/^[0-9]+$/'],
+        'c_crn' => ['required', 'regex:/[\d\-]+/', 'max:12'],
         'c_rep_name' => 'required|max:60',
         'c_rep_phone' => ['required', 'regex:/^(010|011|016|017|018|019)\d{3,4}\d{4}$/', 'max:11'],
         'c_intro' => 'required',

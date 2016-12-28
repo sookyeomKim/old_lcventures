@@ -33,6 +33,7 @@
                 <div class="col-xs-6 col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
+                            <a href="{{route('admin.events.searchNshoping.index')}}">검색&쇼핑박스</a>
                         </div>
                     </div>
                 </div>

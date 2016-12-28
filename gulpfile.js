@@ -53,7 +53,8 @@ elixir(mix => {
     //baidu.css
     mix.copy('vendor/bower_components/jt.timepicker/jquery.timepicker.css', 'public/css/vendor/jquery.timepicker.css');
     mix.copy('vendor/bower_components/jquery-tag-editor/jquery.tag-editor.css', 'public/css/vendor/jquery.tag-editor.css');
-    mix.styles(['vendor/jquery.timepicker.css', 'vendor/jquery.tag-editor.css'], 'public/css/baidu.css', 'public/css');
+    mix.copy('resources/assets/css/baiduMap.css', 'public/css/baiduMap.css');
+    mix.styles(['vendor/jquery.timepicker.css', 'vendor/jquery.tag-editor.css', 'baiduMap.css'], 'public/css/baidu.css', 'public/css');
 
     //baidu.js
     mix.copy('vendor/bower_components/jt.timepicker/jquery.timepicker.js', 'public/js/vendor/jquery.timepicker.js');
@@ -61,7 +62,8 @@ elixir(mix => {
     mix.copy('vendor/bower_components/datepair.js/dist/jquery.datepair.min.js', 'public/js/vendor/jquery.datepair.js');
     mix.copy('vendor/bower_components/jquery-tag-editor/jquery.caret.min.js', 'public/js/vendor/jquery.caret.js');
     mix.copy('vendor/bower_components/jquery-tag-editor/jquery.tag-editor.min.js', 'public/js/vendor/jquery.tag-editor.js');
-    mix.scripts(['vendor/datepair.js', 'vendor/jquery.datepair.js', 'vendor/jquery.timepicker.js', 'vendor/jquery.caret.js', 'vendor/jquery.tag-editor.js'], 'public/js/baidu.js', 'public/js');
+    mix.copy('resources/assets/js/baiduMap.js', 'public/js/baiduMap.js');
+    mix.scripts(['vendor/datepair.js', 'vendor/jquery.datepair.js', 'vendor/jquery.timepicker.js', 'vendor/jquery.caret.js', 'vendor/jquery.tag-editor.js', 'baiduMap.js'], 'public/js/baidu.js', 'public/js');
 
     mix.version(['css/app.css', 'css/event.css', 'js/vendor.js', 'js/event.js', 'css/adminApp.css', 'js/adminApp.js', 'css/baidu.css', 'js/baidu.js', 'css/adminDataTable.css', 'js/adminDataTable.js']);
 });

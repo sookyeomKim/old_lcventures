@@ -28,9 +28,9 @@ class CreateBaidusTable extends Migration
             $table->string('c_rep_name');
             $table->string('c_rep_phone');
             $table->text('c_intro');
-            $table->string('weekdays_times')->nullable();
-            $table->string('weekend_times')->nullable();
-            $table->string('holiday_times')->nullable();
+            $table->string('weekdays_times');
+            $table->string('weekend_times');
+            $table->string('holiday_times');
             $table->string('c_holiday');
             $table->string('c_avg_price');
             $table->string('c_traffic');

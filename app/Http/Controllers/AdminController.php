@@ -21,6 +21,12 @@ class AdminController extends Controller
     public function baiduIndex()
     {
 
-        return view('layouts.admin..events.baiduConsultingList');
+        return view('layouts.admin.events.baiduConsultingList');
+    }
+
+    public function searchNshopingIndex()
+    {
+
+        return view('layouts.admin.events.advConsultingList');
     }
 }
