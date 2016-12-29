@@ -1,19 +1,4 @@
 /*!
- * datepair.js v0.4.15 - A javascript plugin for intelligently selecting date and time ranges inspired by Google Calendar.
- * Copyright (c) 2016 Jon Thornton - http://jonthornton.github.com/Datepair.js
- * License: MIT
- */
-
-!function(a,b){"use strict";function c(a,b){var c=b||{};for(var d in a)d in c||(c[d]=a[d]);return c}function d(a,c){if(h)h(a).trigger(c);else{var d=b.createEvent("CustomEvent");d.initCustomEvent(c,!0,!0,{}),a.dispatchEvent(d)}}function e(a,b){return h?h(a).hasClass(b):a.classList.contains(b)}function f(a,b){this.dateDelta=null,this.timeDelta=null,this._defaults={startClass:"start",endClass:"end",timeClass:"time",dateClass:"date",defaultDateDelta:0,defaultTimeDelta:36e5,anchor:"start",parseTime:function(a){return h(a).timepicker("getTime")},updateTime:function(a,b){h(a).timepicker("setTime",b)},setMinTime:function(a,b){h(a).timepicker("option","minTime",b)},parseDate:function(a){return a.value&&h(a).datepicker("getDate")},updateDate:function(a,b){h(a).datepicker("update",b)}},this.container=a,this.settings=c(this._defaults,b),this.startDateInput=this.container.querySelector("."+this.settings.startClass+"."+this.settings.dateClass),this.endDateInput=this.container.querySelector("."+this.settings.endClass+"."+this.settings.dateClass),this.startTimeInput=this.container.querySelector("."+this.settings.startClass+"."+this.settings.timeClass),this.endTimeInput=this.container.querySelector("."+this.settings.endClass+"."+this.settings.timeClass),this.refresh(),this._bindChangeHandler()}var g=864e5,h=a.Zepto||a.jQuery;f.prototype={constructor:f,option:function(a,b){if("object"==typeof a)this.settings=c(this.settings,a);else if("string"==typeof a&&"undefined"!=typeof b)this.settings[a]=b;else if("string"==typeof a)return this.settings[a];this._updateEndMintime()},getTimeDiff:function(){var a=this.dateDelta+this.timeDelta;return!(a<0)||this.startDateInput&&this.endDateInput||(a+=g),a},refresh:function(){if(this.startDateInput&&this.startDateInput.value&&this.endDateInput&&this.endDateInput.value){var a=this.settings.parseDate(this.startDateInput),b=this.settings.parseDate(this.endDateInput);a&&b&&(this.dateDelta=b.getTime()-a.getTime())}if(this.startTimeInput&&this.startTimeInput.value&&this.endTimeInput&&this.endTimeInput.value){var c=this.settings.parseTime(this.startTimeInput),d=this.settings.parseTime(this.endTimeInput);c&&d&&(this.timeDelta=d.getTime()-c.getTime(),this._updateEndMintime())}},remove:function(){this._unbindChangeHandler()},_bindChangeHandler:function(){h?h(this.container).on("change.datepair",h.proxy(this.handleEvent,this)):this.container.addEventListener("change",this,!1)},_unbindChangeHandler:function(){h?h(this.container).off("change.datepair"):this.container.removeEventListener("change",this,!1)},handleEvent:function(a){this._unbindChangeHandler(),e(a.target,this.settings.dateClass)?""!=a.target.value?(this._dateChanged(a.target),this._timeChanged(a.target)):this.dateDelta=null:e(a.target,this.settings.timeClass)&&(""!=a.target.value?this._timeChanged(a.target):this.timeDelta=null),this._validateRanges(),this._updateEndMintime(),this._bindChangeHandler()},_dateChanged:function(a){if(this.startDateInput&&this.endDateInput){var b=this.settings.parseDate(this.startDateInput),c=this.settings.parseDate(this.endDateInput);if(b&&c)if("start"==this.settings.anchor&&e(a,this.settings.startClass)){var d=new Date(b.getTime()+this.dateDelta);this.settings.updateDate(this.endDateInput,d)}else if("end"==this.settings.anchor&&e(a,this.settings.endClass)){var d=new Date(c.getTime()-this.dateDelta);this.settings.updateDate(this.startDateInput,d)}else if(c<b){var f=e(a,this.settings.startClass)?this.endDateInput:this.startDateInput,h=this.settings.parseDate(a);this.dateDelta=0,this.settings.updateDate(f,h)}else this.dateDelta=c.getTime()-b.getTime();else if(null!==this.settings.defaultDateDelta){if(b){var i=new Date(b.getTime()+this.settings.defaultDateDelta*g);this.settings.updateDate(this.endDateInput,i)}else if(c){var j=new Date(c.getTime()-this.settings.defaultDateDelta*g);this.settings.updateDate(this.startDateInput,j)}this.dateDelta=this.settings.defaultDateDelta*g}else this.dateDelta=null}},_timeChanged:function(a){if(this.startTimeInput&&this.endTimeInput){var b=this.settings.parseTime(this.startTimeInput),c=this.settings.parseTime(this.endTimeInput);if(b&&c)if("start"==this.settings.anchor&&e(a,this.settings.startClass)){var d=new Date(b.getTime()+this.timeDelta);this.settings.updateTime(this.endTimeInput,d),c=this.settings.parseTime(this.endTimeInput),this._doMidnightRollover(b,c)}else if("end"==this.settings.anchor&&e(a,this.settings.endClass)){var d=new Date(c.getTime()-this.timeDelta);this.settings.updateTime(this.startTimeInput,d),b=this.settings.parseTime(this.startTimeInput),this._doMidnightRollover(b,c)}else{this._doMidnightRollover(b,c);var f,g;if(this.startDateInput&&this.endDateInput&&(f=this.settings.parseDate(this.startDateInput),g=this.settings.parseDate(this.endDateInput)),+f==+g&&c<b){var h=e(a,this.settings.endClass)?this.endTimeInput:this.startTimeInput,i=e(a,this.settings.startClass)?this.endTimeInput:this.startTimeInput,j=this.settings.parseTime(h);this.timeDelta=0,this.settings.updateTime(i,j)}else this.timeDelta=c.getTime()-b.getTime()}else if(null!==this.settings.defaultTimeDelta){if(b){var k=new Date(b.getTime()+this.settings.defaultTimeDelta);this.settings.updateTime(this.endTimeInput,k)}else if(c){var l=new Date(c.getTime()-this.settings.defaultTimeDelta);this.settings.updateTime(this.startTimeInput,l)}this.timeDelta=this.settings.defaultTimeDelta}else this.timeDelta=null}},_doMidnightRollover:function(a,b){if(this.startDateInput&&this.endDateInput){var c=this.settings.parseDate(this.endDateInput),d=this.settings.parseDate(this.startDateInput),e=b.getTime()-a.getTime(),f=b<a?g:-1*g;null!==this.dateDelta&&this.dateDelta+this.timeDelta<=g&&this.dateDelta+e!=0&&(f>0||0!=this.dateDelta)&&(e>=0&&this.timeDelta<0||e<0&&this.timeDelta>=0)&&("start"==this.settings.anchor?(this.settings.updateDate(this.endDateInput,new Date(c.getTime()+f)),this._dateChanged(this.endDateInput)):"end"==this.settings.anchor&&(this.settings.updateDate(this.startDateInput,new Date(d.getTime()-f)),this._dateChanged(this.startDateInput))),this.timeDelta=e}},_updateEndMintime:function(){if("function"==typeof this.settings.setMinTime){var a=null;"start"==this.settings.anchor&&(!this.dateDelta||this.dateDelta<g||this.timeDelta&&this.dateDelta+this.timeDelta<g)&&(a=this.settings.parseTime(this.startTimeInput)),this.settings.setMinTime(this.endTimeInput,a)}},_validateRanges:function(){return this.startTimeInput&&this.endTimeInput&&null===this.timeDelta?void d(this.container,"rangeIncomplete"):this.startDateInput&&this.endDateInput&&null===this.dateDelta?void d(this.container,"rangeIncomplete"):void(!this.startDateInput||!this.endDateInput||this.dateDelta+this.timeDelta>=0?d(this.container,"rangeSelected"):d(this.container,"rangeError"))}},a.Datepair=f}(window,document);
-/*!
- * datepair.js v0.4.15 - A javascript plugin for intelligently selecting date and time ranges inspired by Google Calendar.
- * Copyright (c) 2015 Jon Thornton - http://jonthornton.github.com/Datepair.js
- * License: MIT
- */
-
-!function(a,b){"use strict";function c(a,b){var c=b||{};for(var d in a)d in c||(c[d]=a[d]);return c}function d(a,c){if(h)h(a).trigger(c);else{var d=b.createEvent("CustomEvent");d.initCustomEvent(c,!0,!0,{}),a.dispatchEvent(d)}}function e(a,b){return h?h(a).hasClass(b):a.classList.contains(b)}function f(a,b){this.dateDelta=null,this.timeDelta=null,this._defaults={startClass:"start",endClass:"end",timeClass:"time",dateClass:"date",defaultDateDelta:0,defaultTimeDelta:36e5,anchor:"start",parseTime:function(a){return h(a).timepicker("getTime")},updateTime:function(a,b){h(a).timepicker("setTime",b)},setMinTime:function(a,b){h(a).timepicker("option","minTime",b)},parseDate:function(a){return a.value&&h(a).datepicker("getDate")},updateDate:function(a,b){h(a).datepicker("update",b)}},this.container=a,this.settings=c(this._defaults,b),this.startDateInput=this.container.querySelector("."+this.settings.startClass+"."+this.settings.dateClass),this.endDateInput=this.container.querySelector("."+this.settings.endClass+"."+this.settings.dateClass),this.startTimeInput=this.container.querySelector("."+this.settings.startClass+"."+this.settings.timeClass),this.endTimeInput=this.container.querySelector("."+this.settings.endClass+"."+this.settings.timeClass),this.refresh(),this._bindChangeHandler()}var g=864e5,h=a.Zepto||a.jQuery;f.prototype={constructor:f,option:function(a,b){if("object"==typeof a)this.settings=c(this.settings,a);else if("string"==typeof a&&"undefined"!=typeof b)this.settings[a]=b;else if("string"==typeof a)return this.settings[a];this._updateEndMintime()},getTimeDiff:function(){var a=this.dateDelta+this.timeDelta;return!(0>a)||this.startDateInput&&this.endDateInput||(a+=g),a},refresh:function(){if(this.startDateInput&&this.startDateInput.value&&this.endDateInput&&this.endDateInput.value){var a=this.settings.parseDate(this.startDateInput),b=this.settings.parseDate(this.endDateInput);a&&b&&(this.dateDelta=b.getTime()-a.getTime())}if(this.startTimeInput&&this.startTimeInput.value&&this.endTimeInput&&this.endTimeInput.value){var c=this.settings.parseTime(this.startTimeInput),d=this.settings.parseTime(this.endTimeInput);c&&d&&(this.timeDelta=d.getTime()-c.getTime(),this._updateEndMintime())}},remove:function(){this._unbindChangeHandler()},_bindChangeHandler:function(){h?h(this.container).on("change.datepair",h.proxy(this.handleEvent,this)):this.container.addEventListener("change",this,!1)},_unbindChangeHandler:function(){h?h(this.container).off("change.datepair"):this.container.removeEventListener("change",this,!1)},handleEvent:function(a){this._unbindChangeHandler(),e(a.target,this.settings.dateClass)?""!=a.target.value?(this._dateChanged(a.target),this._timeChanged(a.target)):this.dateDelta=null:e(a.target,this.settings.timeClass)&&(""!=a.target.value?this._timeChanged(a.target):this.timeDelta=null),this._validateRanges(),this._updateEndMintime(),this._bindChangeHandler()},_dateChanged:function(a){if(this.startDateInput&&this.endDateInput){var b=this.settings.parseDate(this.startDateInput),c=this.settings.parseDate(this.endDateInput);if(b&&c)if("start"==this.settings.anchor&&e(a,this.settings.startClass)){var d=new Date(b.getTime()+this.dateDelta);this.settings.updateDate(this.endDateInput,d)}else if("end"==this.settings.anchor&&e(a,this.settings.endClass)){var d=new Date(c.getTime()-this.dateDelta);this.settings.updateDate(this.startDateInput,d)}else if(b>c){var f=e(a,this.settings.startClass)?this.endDateInput:this.startDateInput,h=this.settings.parseDate(a);this.dateDelta=0,this.settings.updateDate(f,h)}else this.dateDelta=c.getTime()-b.getTime();else if(null!==this.settings.defaultDateDelta){if(b){var i=new Date(b.getTime()+this.settings.defaultDateDelta*g);this.settings.updateDate(this.endDateInput,i)}else if(c){var j=new Date(c.getTime()-this.settings.defaultDateDelta*g);this.settings.updateDate(this.startDateInput,j)}this.dateDelta=this.settings.defaultDateDelta*g}else this.dateDelta=null}},_timeChanged:function(a){if(this.startTimeInput&&this.endTimeInput){var b=this.settings.parseTime(this.startTimeInput),c=this.settings.parseTime(this.endTimeInput);if(b&&c)if("start"==this.settings.anchor&&e(a,this.settings.startClass)){var d=new Date(b.getTime()+this.timeDelta);this.settings.updateTime(this.endTimeInput,d),c=this.settings.parseTime(this.endTimeInput),this._doMidnightRollover(b,c)}else if("end"==this.settings.anchor&&e(a,this.settings.endClass)){var d=new Date(c.getTime()-this.timeDelta);this.settings.updateTime(this.startTimeInput,d),b=this.settings.parseTime(this.startTimeInput),this._doMidnightRollover(b,c)}else{this._doMidnightRollover(b,c);var f,g;if(this.startDateInput&&this.endDateInput&&(f=this.settings.parseDate(this.startDateInput),g=this.settings.parseDate(this.endDateInput)),+f==+g&&b>c){var h=e(a,this.settings.endClass)?this.endTimeInput:this.startTimeInput,i=e(a,this.settings.startClass)?this.endTimeInput:this.startTimeInput,j=this.settings.parseTime(h);this.timeDelta=0,this.settings.updateTime(i,j)}else this.timeDelta=c.getTime()-b.getTime()}else if(null!==this.settings.defaultTimeDelta){if(b){var k=new Date(b.getTime()+this.settings.defaultTimeDelta);this.settings.updateTime(this.endTimeInput,k)}else if(c){var l=new Date(c.getTime()-this.settings.defaultTimeDelta);this.settings.updateTime(this.startTimeInput,l)}this.timeDelta=this.settings.defaultTimeDelta}else this.timeDelta=null}},_doMidnightRollover:function(a,b){if(this.startDateInput&&this.endDateInput){var c=this.settings.parseDate(this.endDateInput),d=this.settings.parseDate(this.startDateInput),e=b.getTime()-a.getTime(),f=a>b?g:-1*g;null!==this.dateDelta&&this.dateDelta+this.timeDelta<=g&&this.dateDelta+e!=0&&(f>0||0!=this.dateDelta)&&(e>=0&&this.timeDelta<0||0>e&&this.timeDelta>=0)&&("start"==this.settings.anchor?(this.settings.updateDate(this.endDateInput,new Date(c.getTime()+f)),this._dateChanged(this.endDateInput)):"end"==this.settings.anchor&&(this.settings.updateDate(this.startDateInput,new Date(d.getTime()-f)),this._dateChanged(this.startDateInput))),this.timeDelta=e}},_updateEndMintime:function(){if("function"==typeof this.settings.setMinTime){var a=null;"start"==this.settings.anchor&&(!this.dateDelta||this.dateDelta<g||this.timeDelta&&this.dateDelta+this.timeDelta<g)&&(a=this.settings.parseTime(this.startTimeInput)),this.settings.setMinTime(this.endTimeInput,a)}},_validateRanges:function(){return this.startTimeInput&&this.endTimeInput&&null===this.timeDelta?void d(this.container,"rangeIncomplete"):this.startDateInput&&this.endDateInput&&null===this.dateDelta?void d(this.container,"rangeIncomplete"):void(!this.startDateInput||!this.endDateInput||this.dateDelta+this.timeDelta>=0?d(this.container,"rangeSelected"):d(this.container,"rangeError"))}},a.Datepair=f}(window,document),function(a){a&&(a.fn.datepair=function(b){var c;return this.each(function(){var d=a(this),e=d.data("datepair"),f="object"==typeof b&&b;e||(e=new Datepair(this,f),d.data("datepair",e)),"string"==typeof b&&(c=e[b]())}),c||this},a("[data-datepair]").each(function(){var b=a(this);b.datepair(b.data())}))}(window.Zepto||window.jQuery);
-
-/*!
  * jquery-timepicker v1.11.9 - A jQuery timepicker plugin inspired by Google Calendar. It supports both mouse and keyboard navigation.
  * Copyright (c) 2015 Jon Thornton - http://jonthornton.github.com/jquery-timepicker/
  * License: MIT
@@ -1271,166 +1256,365 @@
 	};
 }));
 
-// http://code.accursoft.com/caret - 1.3.3
-!function(e){e.fn.caret=function(e){var t=this[0],n="true"===t.contentEditable;if(0==arguments.length){if(window.getSelection){if(n){t.focus();var o=window.getSelection().getRangeAt(0),r=o.cloneRange();return r.selectNodeContents(t),r.setEnd(o.endContainer,o.endOffset),r.toString().length}return t.selectionStart}if(document.selection){if(t.focus(),n){var o=document.selection.createRange(),r=document.body.createTextRange();return r.moveToElementText(t),r.setEndPoint("EndToEnd",o),r.text.length}var e=0,c=t.createTextRange(),r=document.selection.createRange().duplicate(),a=r.getBookmark();for(c.moveToBookmark(a);0!==c.moveStart("character",-1);)e++;return e}return t.selectionStart?t.selectionStart:0}if(-1==e&&(e=this[n?"text":"val"]().length),window.getSelection)n?(t.focus(),window.getSelection().collapse(t.firstChild,e)):t.setSelectionRange(e,e);else if(document.body.createTextRange)if(n){var c=document.body.createTextRange();c.moveToElementText(t),c.moveStart("character",e),c.collapse(!0),c.select()}else{var c=t.createTextRange();c.move("character",e),c.select()}return n||t.focus(),e}}(jQuery);
-
-// jQuery tagEditor v1.0.20
-// https://github.com/Pixabay/jQuery-tagEditor
-!function(t){t.fn.tagEditorInput=function(){var e=" ",i=t(this),a=parseInt(i.css("fontSize")),r=t("<span/>").css({position:"absolute",top:-9999,left:-9999,width:"auto",fontSize:i.css("fontSize"),fontFamily:i.css("fontFamily"),fontWeight:i.css("fontWeight"),letterSpacing:i.css("letterSpacing"),whiteSpace:"nowrap"}),l=function(){if(e!==(e=i.val())){r.text(e);var t=r.width()+a;20>t&&(t=20),t!=i.width()&&i.width(t)}};return r.insertAfter(i),i.bind("keyup keydown focus",l)},t.fn.tagEditor=function(e,a,r){function l(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}var n,o=t.extend({},t.fn.tagEditor.defaults,e),c=this;if(o.dregex=new RegExp("["+o.delimiter.replace("-","-")+"]","g"),"string"==typeof e){var s=[];return c.each(function(){var i=t(this),l=i.data("options"),n=i.next(".tag-editor");if("getTags"==e)s.push({field:i[0],editor:n,tags:n.data("tags")});else if("addTag"==e){if(l.maxTags&&n.data("tags").length>=l.maxTags)return!1;t('<li><div class="tag-editor-spacer">&nbsp;'+l.delimiter[0]+'</div><div class="tag-editor-tag"></div><div class="tag-editor-delete"><i></i></div></li>').appendTo(n).find(".tag-editor-tag").html('<input type="text" maxlength="'+l.maxLength+'">').addClass("active").find("input").val(a).blur(),r?t(".placeholder",n).remove():n.click()}else"removeTag"==e?(t(".tag-editor-tag",n).filter(function(){return t(this).text()==a}).closest("li").find(".tag-editor-delete").click(),r||n.click()):"destroy"==e&&i.removeClass("tag-editor-hidden-src").removeData("options").off("focus.tag-editor").next(".tag-editor").remove()}),"getTags"==e?s:this}return window.getSelection&&t(document).off("keydown.tag-editor").on("keydown.tag-editor",function(e){if(8==e.which||46==e.which||e.ctrlKey&&88==e.which){try{var a=getSelection(),r="BODY"==document.activeElement.tagName?t(a.getRangeAt(0).startContainer.parentNode).closest(".tag-editor"):0}catch(e){r=0}if(a.rangeCount>0&&r&&r.length){var l=[],n=a.toString().split(r.prev().data("options").dregex);for(i=0;i<n.length;i++){var o=t.trim(n[i]);o&&l.push(o)}return t(".tag-editor-tag",r).each(function(){~t.inArray(t(this).text(),l)&&t(this).closest("li").find(".tag-editor-delete").click()}),!1}}}),c.each(function(){function e(){!o.placeholder||c.length||t(".deleted, .placeholder, input",s).length||s.append('<li class="placeholder"><div>'+o.placeholder+"</div></li>")}function i(i){var a=c.toString();c=t(".tag-editor-tag:not(.deleted)",s).map(function(e,i){var a=t.trim(t(this).hasClass("active")?t(this).find("input").val():t(i).text());return a?a:void 0}).get(),s.data("tags",c),r.val(c.join(o.delimiter[0])),i||a!=c.toString()&&o.onChange(r,s,c),e()}function a(e){for(var a,n=e.closest("li"),d=e.val().replace(/ +/," ").split(o.dregex),g=e.data("old_tag"),f=c.slice(0),h=!1,u=0;u<d.length;u++)if(v=t.trim(d[u]).slice(0,o.maxLength),o.forceLowercase&&(v=v.toLowerCase()),a=o.beforeTagSave(r,s,f,g,v),v=a||v,a!==!1&&v&&(o.removeDuplicates&&~t.inArray(v,f)&&t(".tag-editor-tag",s).each(function(){t(this).text()==v&&t(this).closest("li").remove()}),f.push(v),n.before('<li><div class="tag-editor-spacer">&nbsp;'+o.delimiter[0]+'</div><div class="tag-editor-tag">'+l(v)+'</div><div class="tag-editor-delete"><i></i></div></li>'),o.maxTags&&f.length>=o.maxTags)){h=!0;break}e.attr("maxlength",o.maxLength).removeData("old_tag").val(""),h?e.blur():e.focus(),i()}var r=t(this),c=[],s=t("<ul "+(o.clickDelete?'oncontextmenu="return false;" ':"")+'class="tag-editor"></ul>').insertAfter(r);r.addClass("tag-editor-hidden-src").data("options",o).on("focus.tag-editor",function(){s.click()}),s.append('<li style="width:1px">&nbsp;</li>');var d='<li><div class="tag-editor-spacer">&nbsp;'+o.delimiter[0]+'</div><div class="tag-editor-tag"></div><div class="tag-editor-delete"><i></i></div></li>';s.click(function(e,i){var a,r,l=99999;if(!window.getSelection||""==getSelection())return o.maxTags&&s.data("tags").length>=o.maxTags?(s.find("input").blur(),!1):(n=!0,t("input:focus",s).blur(),n?(n=!0,t(".placeholder",s).remove(),i&&i.length?r="before":t(".tag-editor-tag",s).each(function(){var n=t(this),o=n.offset(),c=o.left,s=o.top;e.pageY>=s&&e.pageY<=s+n.height()&&(e.pageX<c?(r="before",a=c-e.pageX):(r="after",a=e.pageX-c-n.width()),l>a&&(l=a,i=n))}),"before"==r?t(d).insertBefore(i.closest("li")).find(".tag-editor-tag").click():"after"==r?t(d).insertAfter(i.closest("li")).find(".tag-editor-tag").click():t(d).appendTo(s).find(".tag-editor-tag").click(),!1):!1)}),s.on("click",".tag-editor-delete",function(){if(t(this).prev().hasClass("active"))return t(this).closest("li").find("input").caret(-1),!1;var a=t(this).closest("li"),l=a.find(".tag-editor-tag");return o.beforeTagDelete(r,s,c,l.text())===!1?!1:(l.addClass("deleted").animate({width:0},o.animateDelete,function(){a.remove(),e()}),i(),!1)}),o.clickDelete&&s.on("mousedown",".tag-editor-tag",function(a){if(a.ctrlKey||a.which>1){var l=t(this).closest("li"),n=l.find(".tag-editor-tag");return o.beforeTagDelete(r,s,c,n.text())===!1?!1:(n.addClass("deleted").animate({width:0},o.animateDelete,function(){l.remove(),e()}),i(),!1)}}),s.on("click",".tag-editor-tag",function(e){if(o.clickDelete&&(e.ctrlKey||e.which>1))return!1;if(!t(this).hasClass("active")){var i=t(this).text(),a=Math.abs((t(this).offset().left-e.pageX)/t(this).width()),r=parseInt(i.length*a),n=t(this).html('<input type="text" maxlength="'+o.maxLength+'" value="'+l(i)+'">').addClass("active").find("input");if(n.data("old_tag",i).tagEditorInput().focus().caret(r),o.autocomplete){var c=t.extend({},o.autocomplete),d="select"in c?o.autocomplete.select:"";c.select=function(e,i){d&&d(e,i),setTimeout(function(){s.trigger("click",[t(".active",s).find("input").closest("li").next("li").find(".tag-editor-tag")])},20)},n.autocomplete(c)}}return!1}),s.on("blur","input",function(d){d.stopPropagation();var g=t(this),f=g.data("old_tag"),h=t.trim(g.val().replace(/ +/," ").replace(o.dregex,o.delimiter[0]));if(h){if(h.indexOf(o.delimiter[0])>=0)return void a(g);if(h!=f)if(o.forceLowercase&&(h=h.toLowerCase()),cb_val=o.beforeTagSave(r,s,c,f,h),h=cb_val||h,cb_val===!1){if(f)return g.val(f).focus(),n=!1,void i();try{g.closest("li").remove()}catch(d){}f&&i()}else o.removeDuplicates&&t(".tag-editor-tag:not(.active)",s).each(function(){t(this).text()==h&&t(this).closest("li").remove()})}else{if(f&&o.beforeTagDelete(r,s,c,f)===!1)return g.val(f).focus(),n=!1,void i();try{g.closest("li").remove()}catch(d){}f&&i()}g.parent().html(l(h)).removeClass("active"),h!=f&&i(),e()});var g;s.on("paste","input",function(){t(this).removeAttr("maxlength"),g=t(this),setTimeout(function(){a(g)},30)});var f;s.on("keypress","input",function(e){o.delimiter.indexOf(String.fromCharCode(e.which))>=0&&(f=t(this),setTimeout(function(){a(f)},20))}),s.on("keydown","input",function(e){var i=t(this);if((37==e.which||!o.autocomplete&&38==e.which)&&!i.caret()||8==e.which&&!i.val()){var a=i.closest("li").prev("li").find(".tag-editor-tag");return a.length?a.click().find("input").caret(-1):!i.val()||o.maxTags&&s.data("tags").length>=o.maxTags||t(d).insertBefore(i.closest("li")).find(".tag-editor-tag").click(),!1}if((39==e.which||!o.autocomplete&&40==e.which)&&i.caret()==i.val().length){var l=i.closest("li").next("li").find(".tag-editor-tag");return l.length?l.click().find("input").caret(0):i.val()&&s.click(),!1}if(9==e.which){if(e.shiftKey){var a=i.closest("li").prev("li").find(".tag-editor-tag");if(a.length)a.click().find("input").caret(0);else{if(!i.val()||o.maxTags&&s.data("tags").length>=o.maxTags)return r.attr("disabled","disabled"),void setTimeout(function(){r.removeAttr("disabled")},30);t(d).insertBefore(i.closest("li")).find(".tag-editor-tag").click()}return!1}var l=i.closest("li").next("li").find(".tag-editor-tag");if(l.length)l.click().find("input").caret(0);else{if(!i.val())return;s.click()}return!1}if(!(46!=e.which||t.trim(i.val())&&i.caret()!=i.val().length)){var l=i.closest("li").next("li").find(".tag-editor-tag");return l.length?l.click().find("input").caret(0):i.val()&&s.click(),!1}if(13==e.which)return s.trigger("click",[i.closest("li").next("li").find(".tag-editor-tag")]),o.maxTags&&s.data("tags").length>=o.maxTags&&s.find("input").blur(),!1;if(36!=e.which||i.caret()){if(35==e.which&&i.caret()==i.val().length)s.find(".tag-editor-tag").last().click();else if(27==e.which)return i.val(i.data("old_tag")?i.data("old_tag"):"").blur(),!1}else s.find(".tag-editor-tag").first().click()});for(var h=o.initialTags.length?o.initialTags:r.val().split(o.dregex),u=0;u<h.length&&!(o.maxTags&&u>=o.maxTags);u++){var v=t.trim(h[u].replace(/ +/," "));v&&(o.forceLowercase&&(v=v.toLowerCase()),c.push(v),s.append('<li><div class="tag-editor-spacer">&nbsp;'+o.delimiter[0]+'</div><div class="tag-editor-tag">'+l(v)+'</div><div class="tag-editor-delete"><i></i></div></li>'))}i(!0),o.sortable&&t.fn.sortable&&s.sortable({distance:5,cancel:".tag-editor-spacer, input",helper:"clone",update:function(){i()}})})},t.fn.tagEditor.defaults={initialTags:[],maxTags:0,maxLength:50,delimiter:",;",placeholder:"",forceLowercase:!0,removeDuplicates:!0,clickDelete:!1,animateDelete:175,sortable:!0,autocomplete:null,onChange:function(){},beforeTagSave:function(){},beforeTagDelete:function(){}}}(jQuery);
-/**
- * Created by ikks0 on 2016-12-28.
+/*!
+ * datepair.js v0.4.15 - A javascript plugin for intelligently selecting date and time ranges inspired by Google Calendar.
+ * Copyright (c) 2016 Jon Thornton - http://jonthornton.github.com/Datepair.js
+ * License: MIT
  */
-(function ($) {
-    $.ajaxSetup({
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-    });
 
-    getFisrtCob();
+(function(window, document) {
 
-    getSecondCob();
+	'use strict';
 
-    setTimePicker();
+	var _ONE_DAY = 86400000;
+	var jq = window.Zepto || window.jQuery;
+	
+	function simpleExtend(obj1, obj2) {
+		var out = obj2 || {};
+	
+		for (var i in obj1) {
+			if (!(i in out)) {
+				out[i] = obj1[i];
+			}
+		}
+	
+		return out;
+	}
+	
+	// IE's custom event support is totally borked.
+	// Use jQuery if possible
+	function triggerSimpleCustomEvent(el, eventName) {
+		if (jq) {
+			jq(el).trigger(eventName);
+		} else {
+			var event = document.createEvent('CustomEvent');
+			event.initCustomEvent(eventName, true, true, {});
+			el.dispatchEvent(event);
+		}
+	}
+	
+	// el.classList not supported by < IE10
+	// use jQuery if available
+	function hasClass(el, className) {
+		if (jq) {
+			return jq(el).hasClass(className);
+		} else {
+			return el.classList.contains(className);
+		}
+	}
+	
+	function Datepair(container, options) {
+		this.dateDelta = null;
+		this.timeDelta = null;
+		this._defaults =	{
+			startClass: 'start',
+			endClass: 'end',
+			timeClass: 'time',
+			dateClass: 'date',
+			defaultDateDelta: 0,
+			defaultTimeDelta: 3600000,
+			anchor: 'start',
+	
+			// defaults for jquery-timepicker; override when using other input widgets
+			parseTime: function(input){
+				return jq(input).timepicker('getTime');
+			},
+			updateTime: function(input, dateObj){
+				jq(input).timepicker('setTime', dateObj);
+			},
+			setMinTime: function(input, dateObj){
+				jq(input).timepicker('option', 'minTime', dateObj);
+			},
+	
+			// defaults for bootstrap datepicker; override when using other input widgets
+			parseDate: function(input){
+				return input.value && jq(input).datepicker('getDate');
+			},
+			updateDate: function(input, dateObj){
+				jq(input).datepicker('update', dateObj);
+			}
+		};
+	
+		this.container = container;
+		this.settings = simpleExtend(this._defaults, options);
+	
+		this.startDateInput = this.container.querySelector('.'+this.settings.startClass+'.'+this.settings.dateClass);
+		this.endDateInput = this.container.querySelector('.'+this.settings.endClass+'.'+this.settings.dateClass);
+		this.startTimeInput = this.container.querySelector('.'+this.settings.startClass+'.'+this.settings.timeClass);
+		this.endTimeInput = this.container.querySelector('.'+this.settings.endClass+'.'+this.settings.timeClass);
+	
+		// initialize date and time deltas
+		this.refresh();
+	
+		// init starts here
+		this._bindChangeHandler();
+	}
+	
+	Datepair.prototype = {
+		constructor: Datepair,
+	
+		option: function(key, value)
+		{
+			if (typeof key == 'object') {
+				this.settings = simpleExtend(this.settings, key);
+	
+			} else if (typeof key == 'string' && typeof value != 'undefined') {
+				this.settings[key] = value;
+	
+			} else if (typeof key == 'string') {
+				return this.settings[key];
+			}
+	
+			this._updateEndMintime();
+		},
+	
+		getTimeDiff: function()
+		{
+			// due to the fact that times can wrap around, timeDiff for any
+			// time-only pair will always be >= 0
+			var delta = this.dateDelta + this.timeDelta;
+			if (delta < 0 && (!this.startDateInput || !this.endDateInput) ) {
+				delta += _ONE_DAY;
+			}
+	
+			return delta;
+		},
+	
+		refresh: function()
+		{
+			if (this.startDateInput && this.startDateInput.value && this.endDateInput && this.endDateInput.value) {
+				var startDate = this.settings.parseDate(this.startDateInput);
+				var endDate = this.settings.parseDate(this.endDateInput);
+				if (startDate && endDate) {
+					this.dateDelta = endDate.getTime() - startDate.getTime();
+				}
+			}
+			if (this.startTimeInput && this.startTimeInput.value && this.endTimeInput && this.endTimeInput.value) {
+				var startTime = this.settings.parseTime(this.startTimeInput);
+				var endTime = this.settings.parseTime(this.endTimeInput);
+				if (startTime && endTime) {
+					this.timeDelta = endTime.getTime() - startTime.getTime();
+					this._updateEndMintime();
+				}
+			}
+		},
+	
+		remove: function()
+		{
+			this._unbindChangeHandler();
+		},
+	
+		_bindChangeHandler: function(){
+			// addEventListener doesn't work with synthetic "change" events
+			// fired by jQuery's trigger() functioin. If jQuery is present,
+			// use that for event binding
+			if (jq) {
+				jq(this.container).on('change.datepair', jq.proxy(this.handleEvent, this));
+			} else {
+				this.container.addEventListener('change', this, false);
+			}
+		},
+	
+		_unbindChangeHandler: function(){
+			if (jq) {
+				jq(this.container).off('change.datepair');
+			} else {
+				this.container.removeEventListener('change', this, false);
+			}
+		},
+	
+		// This function will be called when passing 'this' to addEventListener
+		handleEvent: function(e){
+			// temporarily unbind the change handler to prevent triggering this
+			// if we update other inputs
+			this._unbindChangeHandler();
+	
+			if (hasClass(e.target, this.settings.dateClass)) {
+				if (e.target.value != '') {
+					this._dateChanged(e.target);
+					this._timeChanged(e.target);
+				} else {
+					this.dateDelta = null;
+				}
+	
+			} else if (hasClass(e.target, this.settings.timeClass)) {
+				if (e.target.value != '') {
+					this._timeChanged(e.target);
+				} else {
+					this.timeDelta = null;
+				}
+			}
+	
+			this._validateRanges();
+			this._updateEndMintime();
+			this._bindChangeHandler();
+		},
+	
+		_dateChanged: function(target){
+			if (!this.startDateInput || !this.endDateInput) {
+				return;
+			}
+	
+			var startDate = this.settings.parseDate(this.startDateInput);
+			var endDate = this.settings.parseDate(this.endDateInput);
+	
+			if (!startDate || !endDate) {
+				if (this.settings.defaultDateDelta !== null) {
+					if (startDate) {
+						var newEnd = new Date(startDate.getTime() + this.settings.defaultDateDelta * _ONE_DAY);
+						this.settings.updateDate(this.endDateInput, newEnd);
+	
+					} else if (endDate) {
+						var newStart = new Date(endDate.getTime() - this.settings.defaultDateDelta * _ONE_DAY);
+						this.settings.updateDate(this.startDateInput, newStart);
+					}
+	
+					this.dateDelta = this.settings.defaultDateDelta * _ONE_DAY;
+				} else {
+					this.dateDelta = null;
+				}
+	
+				return;
+			}
+	
+			if (this.settings.anchor == 'start' && hasClass(target, this.settings.startClass)) {
+				var newDate = new Date(startDate.getTime() + this.dateDelta);
+				this.settings.updateDate(this.endDateInput, newDate);
+			} else if (this.settings.anchor == 'end' && hasClass(target, this.settings.endClass)) {
+				var newDate = new Date(endDate.getTime() - this.dateDelta);
+				this.settings.updateDate(this.startDateInput, newDate);
+			} else {
+				if (endDate < startDate) {
+					var otherInput = hasClass(target, this.settings.startClass) ? this.endDateInput : this.startDateInput;
+					var selectedDate = this.settings.parseDate(target);
+					this.dateDelta = 0;
+					this.settings.updateDate(otherInput, selectedDate);
+				} else {
+					this.dateDelta = endDate.getTime() - startDate.getTime();
+				}
+			}
+		},
+	
+		_timeChanged: function(target){
+			if (!this.startTimeInput || !this.endTimeInput) {
+				return;
+			}
+	
+			var startTime = this.settings.parseTime(this.startTimeInput);
+			var endTime = this.settings.parseTime(this.endTimeInput);
+	
+			if (!startTime || !endTime) {
+				if (this.settings.defaultTimeDelta !== null) {
+					if (startTime) {
+						var newEnd = new Date(startTime.getTime() + this.settings.defaultTimeDelta);
+						this.settings.updateTime(this.endTimeInput, newEnd);
+					} else if (endTime) {
+						var newStart = new Date(endTime.getTime() - this.settings.defaultTimeDelta);
+						this.settings.updateTime(this.startTimeInput, newStart);
+					}
+	
+					this.timeDelta = this.settings.defaultTimeDelta;
+				} else {
+					this.timeDelta = null;
+				}
+	
+				return;
+			}
+	
+			if (this.settings.anchor == 'start' && hasClass(target, this.settings.startClass)) {
+				var newTime = new Date(startTime.getTime() + this.timeDelta);
+				this.settings.updateTime(this.endTimeInput, newTime);
+				endTime = this.settings.parseTime(this.endTimeInput);
+	
+				this._doMidnightRollover(startTime, endTime);
+			} else if (this.settings.anchor == 'end' && hasClass(target, this.settings.endClass)) {
+				var newTime = new Date(endTime.getTime() - this.timeDelta);
+				this.settings.updateTime(this.startTimeInput, newTime);
+				startTime = this.settings.parseTime(this.startTimeInput);
+	
+				this._doMidnightRollover(startTime, endTime);
+			} else {
+				this._doMidnightRollover(startTime, endTime);
+	
+				var startDate, endDate;
+				if (this.startDateInput && this.endDateInput) {
+					startDate = this.settings.parseDate(this.startDateInput);
+					endDate = this.settings.parseDate(this.endDateInput);
+				}
+	
+				if ((+startDate == +endDate) && (endTime < startTime)) {
+					var thisInput  = hasClass(target, this.settings.endClass) ? this.endTimeInput : this.startTimeInput;
+					var otherInput = hasClass(target, this.settings.startClass) ? this.endTimeInput : this.startTimeInput;
+					var selectedTime = this.settings.parseTime(thisInput);
+					this.timeDelta = 0;
+					this.settings.updateTime(otherInput, selectedTime);
+				} else {
+					this.timeDelta = endTime.getTime() - startTime.getTime();
+				}
+			}
+	
+	
+		},
+	
+		_doMidnightRollover: function(startTime, endTime) {
+			if (!this.startDateInput || !this.endDateInput) {
+				return;
+			}
+	
+			var endDate = this.settings.parseDate(this.endDateInput);
+			var startDate = this.settings.parseDate(this.startDateInput);
+			var newDelta = endTime.getTime() - startTime.getTime();
+			var offset = (endTime < startTime) ? _ONE_DAY : -1 * _ONE_DAY;
+	
+			if (this.dateDelta !== null
+					&& this.dateDelta + this.timeDelta <= _ONE_DAY
+					&& this.dateDelta + newDelta != 0
+					&& (offset > 0 || this.dateDelta != 0)
+					&& ((newDelta >= 0 && this.timeDelta < 0) || (newDelta < 0 && this.timeDelta >= 0))) {
+	
+				if (this.settings.anchor == 'start') {
+					this.settings.updateDate(this.endDateInput, new Date(endDate.getTime() + offset));
+					this._dateChanged(this.endDateInput);
+				} else if (this.settings.anchor == 'end') {
+					this.settings.updateDate(this.startDateInput, new Date(startDate.getTime() - offset));
+					this._dateChanged(this.startDateInput);
+				}
+			}
+			this.timeDelta = newDelta;
+		},
+	
+		_updateEndMintime: function(){
+			if (typeof this.settings.setMinTime != 'function') return;
+	
+			var baseTime = null;
+			if (this.settings.anchor == 'start' && (!this.dateDelta || this.dateDelta < _ONE_DAY || (this.timeDelta && this.dateDelta + this.timeDelta < _ONE_DAY))) {
+				baseTime = this.settings.parseTime(this.startTimeInput);
+			}
+	
+			this.settings.setMinTime(this.endTimeInput, baseTime);
+		},
+	
+		_validateRanges: function(){
+			if (this.startTimeInput && this.endTimeInput && this.timeDelta === null) {
+				triggerSimpleCustomEvent(this.container, 'rangeIncomplete');
+				return;
+			}
+	
+			if (this.startDateInput && this.endDateInput && this.dateDelta === null) {
+				triggerSimpleCustomEvent(this.container, 'rangeIncomplete');
+				return;
+			}
+	
+			// due to the fact that times can wrap around, any time-only pair will be considered valid
+			if (!this.startDateInput || !this.endDateInput || this.dateDelta + this.timeDelta >= 0) {
+				triggerSimpleCustomEvent(this.container, 'rangeSelected');
+			} else {
+				triggerSimpleCustomEvent(this.container, 'rangeError');
+			}
+		}
+	};
 
-    setTag();
+	window.Datepair = Datepair;
 
-    setFormat();
-
-    setImaText();
-
-    $('#baidu_reg_button').click(function () {
-        $(this).attr('disabled', 'disabled');
-        baidu_reg_ajax(this);
-    });
-
-    function getFisrtCob() {
-        $.ajax({
-            type: 'get',
-            url: $('#firstCob-url').val(),
-            dataType: 'json'
-        }).done(function (data) {
-            $.each($.parseJSON(data), function (key, value) {
-                var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
-                var cloneOptionTag = optionTag.clone(true);
-                $('#c_first_cob').append(cloneOptionTag)
-            });
-        });
-    }
-
-    function getSecondCob() {
-        $.ajax({
-            type: 'get',
-            url: $('#secondCob-url').val(),
-            dataType: 'json'
-        }).done(function (data) {
-            $.each($.parseJSON(data), function (key, value) {
-                var optionTag = $('<option value="' + value.cobName + '">' + value.cobName + '</option>');
-                var cloneOptionTag = optionTag.clone(true);
-                $('#c_second_cob').append(cloneOptionTag)
-            });
-        })
-    }
-
-    function setTimePicker() {
-        $('#weekdays_times .time').timepicker({
-            'showDuration': true,
-            'timeFormat': 'g:ia',
-            'noneOption': [
-                {
-                    'label': '영업 안 함',
-                    'value': '영업 안 함'
-                },
-            ]
-        });
-
-        $('#weekdays_times').datepair();
-
-        $('#weekend_times .time').timepicker({
-            'showDuration': true,
-            'timeFormat': 'g:ia',
-            'noneOption': [
-                {
-                    'label': '영업 안 함',
-                    'value': '영업 안 함'
-                },
-            ]
-        });
-
-        $('#weekend_times').datepair();
-
-        $('#holiday_times .time').timepicker({
-            'showDuration': true,
-            'timeFormat': 'g:ia',
-            'noneOption': [
-                {
-                    'label': '영업 안 함',
-                    'value': '영업 안 함'
-                },
-            ]
-        });
-
-        $('#holiday_times').datepair();
-    }
-
-    function setTag() {
-        $('#c_tag').tagEditor();
-    }
-
-    function setFormat() {
-        var separator = '-';
-        $('input.c_avg_price').keyup(function (event) {
-
-            // 방향키 스킵
-            if (event.which >= 37 && event.which <= 40) return;
-
-            // 숫자 포맷팅
-            // 숫자 의외의 다른 문자는 제거하고 3개의 숫자마다 콤마를 붙혀준다.
-            $(this).val(function (index, value) {
-                return value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            });
-        });
-
-        $('input.c_crn').keyup(function (event) {
-            if (event.which >= 37 && event.which <= 40) return;
-            if ($(this).val().length < 12) {
-                $(this).val(function (index, value) {
-                    return value.replace(/\D/g, "").replace(/(\d{3})(\d{2})(\d{5})/, '$1' + separator + '$2' + separator + '$3');
-                });
-            } else {
-                $(this).val($(this).val().substring(0, 12));
-            }
-        });
-    }
-
-    function baidu_reg_ajax(el) {
-        $.ajax({
-            url: $('#baidu-store-url').val(),
-            data: new FormData($('#register-form')[0]),
-            dataType: 'json',
-            type: 'post',
-            processData: false,
-            contentType: false
-        }).done(function (data) {
-            alert('신청이 완료되었습니다.');
-            window.location.href = '/';
-        }).fail(function (data) {
-            $(el).removeAttr('disabled');
-            if (data.status === 422) {
-                $.each(JSON.parse(data.responseText), function (key, value) {
-                    $("#" + key).siblings('.error-message').text(value[0]).parent().addClass('has-error');
-                });
-                $('.error-message').click(function () {
-                    $(this).text('').parent().removeClass('has-error').find('input').focus();
-                });
-            }
-        })
-    }
-
-    function setImaText() {
-        var split;
-        $('.upload-button').change(function () {
-            split = $(this).val().split('\\');
-            $(this).closest('div').siblings().find('.upload-text').val(split.pop());
-        })
-    }
-})(jQuery)
+}(window, document));
 //# sourceMappingURL=baidu.js.map

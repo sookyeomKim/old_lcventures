@@ -15,6 +15,11 @@ elixir(mix => {
     //fonts
     mix.copy('vendor/bower_components/bootstrap/fonts/**', 'public/build/fonts/bootstrap');
 
+    //polyfill
+    mix.copy('vendor/bower_components/jquery-placeholder/jquery.placeholder.js', 'public/js/jquery.placeholder.js');
+    mix.copy('resources/assets/js/setPlaceholder.js', 'public/js/setPlaceholder.js');
+    mix.scripts(['jquery.placeholder.js','setPlaceholder.js'], 'public/js/jquery.placeholder.js', 'public/js');
+
     //common.css
     mix.copy('resources/assets/css/common.css', 'public/css/common.css');
     mix.copy('resources/assets/css/main.css', 'public/css/main.css');
@@ -65,7 +70,7 @@ elixir(mix => {
     mix.copy('resources/assets/js/baiduMap.js', 'public/js/baiduMap.js');
     mix.scripts(['vendor/datepair.js', 'vendor/jquery.datepair.js', 'vendor/jquery.timepicker.js', 'vendor/jquery.caret.js', 'vendor/jquery.tag-editor.js', 'baiduMap.js'], 'public/js/baidu.js', 'public/js');
 
-    mix.version(['css/app.css', 'css/event.css', 'js/vendor.js', 'js/event.js', 'css/adminApp.css', 'js/adminApp.js', 'css/baidu.css', 'js/baidu.js', 'css/adminDataTable.css', 'js/adminDataTable.js']);
+    mix.version(['css/app.css', 'css/event.css', 'js/vendor.js', 'js/event.js', 'css/adminApp.css', 'js/adminApp.js', 'css/baidu.css', 'js/baidu.js', 'css/adminDataTable.css', 'js/adminDataTable.js', 'js/jquery.placeholder.js']);
 });
 
 

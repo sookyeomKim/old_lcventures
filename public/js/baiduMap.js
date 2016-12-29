@@ -153,4 +153,4 @@
             $(this).closest('div').siblings().find('.upload-text').val(split.pop());
         })
     }
-})(jQuery)
+})(jQuery);

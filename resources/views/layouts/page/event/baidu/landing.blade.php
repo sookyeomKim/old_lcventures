@@ -1,205 +1,7 @@
 @extends('master')
 @section('pageTitle', '바이두맵 광고 신청')
 @section('styles')
-    <style>
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        thead, tbody, th, td {
-            padding-top: 0;
-            border: 1px solid #000;
-        }
-
-        th, td {
-            padding: 5px;
-        }
-
-        input {
-            border: none;
-            width: 100%;
-            height: 108%;
-        }
-
-        button, .registerBtn {
-            cursor: pointer;
-        }
-
-        .tableBox {
-            width: 90%;
-            margin: 0 auto;
-        }
-
-        tbody th:not(#applicantInfo th), #table01 th:not(thead th) {
-            border-right: 1px solid black;
-            background-color: #dcdcdc;
-        }
-
-        h1 {
-            color: #0080ff;
-            padding: 10px;
-            text-align: center;
-            border-top: 2px solid #0080ff;
-            border-bottom: 2px solid #0080ff;
-        }
-
-        .navy {
-            color: mediumblue;
-        }
-
-        #submitBtn {
-            width: 360px;
-            margin: 20px auto;
-            cursor: pointer;
-            background: url('Images/button.png') no-repeat;
-        }
-
-        /*button*/
-
-        button #submitBtn {
-            width: 360px;
-            height: 44px;
-            background: url('Images/button.png') no-repeat;
-            cursor: pointer;
-        }
-
-        #c_first_cob, #c_second_cob {
-            width: 100%;
-            height: 109%;
-            padding: 0px;
-        }
-
-        #applicantInfo .levelSelect {
-            padding: 0;
-        }
-
-        #c_i_level {
-            width: 100%;
-            height: 100%;
-            padding: 0px;
-            border: 0px;
-        }
-
-        #table01 .selectStyle {
-            padding: 0px;
-        }
-
-        input .time {
-            width: 45%;
-        }
-
-        textarea {
-            width: 99.5%;
-            height: 100%;
-
-        }
-
-        /*#table01 th:not(thead){
-            background-color:
-        }*/
-
-        #table01 td {
-            padding: 1px;
-        }
-
-        #table3 td {
-            padding: 5px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        #table3 .registerBtn, #table3 button {
-            border: 0px;
-            padding: 5px;
-            width: 100%;
-            color: white;
-            border: 1px solid #696969;
-            background-color: #696969;
-        }
-
-        #table01 th, #table3 tr td:nth-child(1), #table3 tr td:nth-child(4) {
-            background-color: #dcdcdc;
-        }
-
-        /* font 밝은회색 */
-        #table3 tr td:nth-child(2), #table3 tr td:nth-child(5) {
-            color: #dcdcdc;
-            font-weight: normal;
-        }
-
-        #table3 tr td:nth-child(3), #table3 tr td:nth-child(6) {
-            padding: 0px;
-            color: #dcdcdc;
-            font-weight: normal;
-        }
-
-        #weekdays_times input, #weekend_times input, #holiday_times input {
-            width: 48.5%;
-        }
-
-        .alert {
-            color: red;
-        }
-
-        #table3 #emptyCell {
-            background-color: white;
-        }
-
-        #table3 button:visited {
-            border: none;
-        }
-
-        #table01 thead th, table thead {
-            color: white;
-            text-align: center;
-            font-weight: bolder;
-            background-color: #0080ff;
-        }
-
-        tbody th, thead th {
-            text-align: center;
-        }
-
-        #applicantInfo {
-            padding: 5% 9.6%;
-            background-color: #dcdcdc;
-        }
-
-        #applicantInfo td {
-            padding: 1px;
-        }
-
-        #applicantInfo input {
-            height: 107%;
-        }
-
-        #applicantInfo table {
-            width: 801px;
-            margin-bottom: 15px;
-            border: 2px solid black;
-            background-color: white;
-        }
-
-        #applicantInfo table tr:nth-child(1) th:nth-child(1) {
-            color: white;
-            background-color: #696969;
-        }
-
-        #applicantInfo table tr th {
-            font-weight: bold;
-        }
-
-        #applicantInfo #register-button {
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .error-text {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="{{elixir('css/baidu.css')}}">
 @endsection
 @section('sub')
     <div id="wrap">
@@ -275,112 +77,100 @@
 
         <!-- 바디 영역 시작 -->
         <div id="container">
-
-            <!-- 레프트 메뉴 영역 시작 -->
-            <div class="leftmenu">
-                <h2>BUSI<span style="display:block; line-height:28px; padding-bottom:12px;">NESS</span></h2>
-                <ul>
-                    <li><a href="{{url('page/snsMarketing')}}">SNS marketing</a></li>
-                    <li><a href="{{url('page/integratedMarketing')}}">Integrated marketing</a></li>
-                    <li><a href="{{url('page/display')}}">Keyword &amp; Display</a></li>
-                    <li><a href="{{url('page/viralMarketing')}}">Viral marketing</a></li>
-                </ul>
-            </div>
-            <!-- //레프트 메뉴 영역 끝 -->
-
+            <div class="l_img01"><img src="../../images/baidu_landing.jpg" alt="" style="width: 100%;"></div>
             <!-- 컨텐츠 영역 시작 -->
-            <div class="contents">
-                <div class="l_img01"><img src="../../images/baidu_landing.jpg" alt=""></div>
-                <div id="applicantInfo">
-                    <form id="register-from" method="post">
-                        <input type="hidden" name="_method" value="get">
-                        <table>
-                            <tr>
-                                <th colspan="2">신청자 정보</th>
-                            </tr>
-                            <tr>
-                                <th><label for="c_name">상호명</label></th>
-                                <td>
-                                    <input type="text" id="c_name" class="baidu-reg-input" name="c_name"
-                                           value="{{old('c_name')}}">
+            <div class="baidu-reg-wrap">
+                <form id="register-from" method="post">
+                    <input type="hidden" name="_method" value="get">
+                    <table>
+                        <tr>
+                            <th colspan="2">신청자 정보</th>
+                        </tr>
+                        <tr>
+                            <th><label for="c_name">상호명</label></th>
+                            <td class="{{$errors->has('c_name')?'has-error':''}}">
+                                <input type="text" id="c_name" class="baidu-reg-input" name="c_name"
+                                       value="{{old('c_name')}}" placeholder="ex)(주)엘씨벤처스">
 
-                                    @if($errors->has('c_name'))
-                                        <div class="error-text">{{$errors->first('c_name')}}</div>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><label for="c_addr">주소</label></th>
-                                <td>
-                                    <input type="text" id="c_addr" class="baidu-reg-input" name="c_addr"
-                                           value="{{old('c_addr')}}">
-                                    @if($errors->has('c_addr'))
-                                        <div class="error-text">{{$errors->first('c_addr')}}</div>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><label for="c_m_name">성함</label></th>
-                                <td>
-                                    <input type="text" id="c_m_name" class="baidu-reg-input" name="c_m_name"
-                                           value="{{old('c_m_name')}}">
-                                    @if($errors->has('c_m_name'))
-                                        <div class="error-text">{{$errors->first('c_m_name')}}</div>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><label for="c_m_phone">연락처</label></th>
-                                <td>
-                                    <input type="text" id="c_m_phone" class="baidu-reg-input" name="c_m_phone"
-                                           value="{{old('c_m_phone')}}">
-                                    @if($errors->has('c_m_phone'))
-                                        <div class="error-text">{{$errors->first('c_m_phone')}}</div>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><label for="c_m_email">이메일</label></th>
-                                <td>
-                                    <input type="email" id="c_m_email" class="baidu-reg-input" name="c_m_email"
-                                           value="{{old('c_m_email')}}">
-                                    @if($errors->has('c_m_email'))
-                                        <div class="error-text">{{$errors->first('c_m_email')}}</div>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>레벨(선택)</th>
-                                <td class="levelSelect">
-                                    <select id="c_i_level" name="c_i_level">
-                                        <option value="standard" selected="selected">스탠다드</option>
-                                        <option value="silver">실버</option>
-                                        <option value="gold">골드</option>
-                                        <option value="premium">프리미엄</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                        <div id="register-button">
-                            <img src="{{asset('Images/baiduRegButton.png')}}"/>
-                        </div>
-                    </form>
-                </div>
+                                @if($errors->has('c_name'))
+                                    <p class="error-message">{{$errors->first('c_name')}}</p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_addr">주소</label></th>
+                            <td class="{{$errors->has('c_addr')?'has-error':''}}">
+                                <input type="text" id="c_addr" class="baidu-reg-input" name="c_addr"
+                                       value="{{old('c_addr')}}" placeholder="ex)서울 강남구 역삼동 696-20 도원빌딩 4층">
+                                @if($errors->has('c_addr'))
+                                    <p class="error-message">{{$errors->first('c_addr')}}</p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_m_name">성함</label></th>
+                            <td class="{{$errors->has('c_m_name')?'has-error':''}}">
+                                <input type="text" id="c_m_name" class="baidu-reg-input" name="c_m_name"
+                                       value="{{old('c_m_name')}}" placeholder="ex)김수겸">
+                                @if($errors->has('c_m_name'))
+                                    <p class="error-message">{{$errors->first('c_m_name')}}</p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_m_phone">연락처</label></th>
+                            <td class="{{$errors->has('c_m_phone')?'has-error':''}}">
+                                <input type="text" id="c_m_phone" class="baidu-reg-input" name="c_m_phone"
+                                       value="{{old('c_m_phone')}}" placeholder="ex)01012345678">
+                                @if($errors->has('c_m_phone'))
+                                    <p class="error-message">{{$errors->first('c_m_phone')}}</p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="c_m_email">이메일</label></th>
+                            <td class="{{$errors->has('c_m_email')?'has-error':''}}">
+                                <input type="email" id="c_m_email" class="baidu-reg-input" name="c_m_email"
+                                       value="{{old('c_m_email')}}" placeholder="ex)skkim@lcventures.co.kr">
+                                @if($errors->has('c_m_email'))
+                                    <p class="error-message">{{$errors->first('c_m_email')}}</p>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>레벨(선택)</th>
+                            <td class="levelSelect">
+                                <select id="c_i_level" name="c_i_level">
+                                    <option value="standard" selected="selected">스탠다드</option>
+                                    <option value="silver">실버</option>
+                                    <option value="gold">골드</option>
+                                    <option value="premium">프리미엄</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="button" id="baidu_reg_button">
+                        <img src="{{asset('images/baiduRegButton.png')}}" alt="바이두신청서 전송하기">
+                    </button>
+                </form>
             </div>
             <!-- //컨텐츠 영역 끝 -->
         </div>
     </div>
-@endsection
+    @endsection
 @section('scripts')
+    <!--[if lte ie 9]>
+    <script src="{{elixir('js/jquery.placeholder.js')}}"></script>
+    <![endif]-->
     <script>
         (function ($) {
-            $('#register-button').click(function () {
+            $('#baidu_reg_button').click(function () {
                 $('#register-from').attr('action', '{{url('page/event/baidu/register')}}' + '/' + $('#c_i_level').val()).submit();
             });
 
-            $('.baidu-reg-input').keydown(function () {
-                $(this).siblings().remove()
-            })
+            $('.error-message').click(function () {
+                $(this).text('').parent().removeClass('has-error').find('input').focus();
+            });
         })(jQuery)
     </script>
 @endsection

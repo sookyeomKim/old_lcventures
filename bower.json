@@ -25,6 +25,7 @@
     "datepair.js": "^0.4.15",
     "jquery-tag-editor": "^1.0.20",
     "datatables.net": "^1.10.13",
-    "datatables.net-bs": "^1.10.13"
+    "datatables.net-bs": "^1.10.13",
+    "jquery-placeholder": "^2.3.1"
   }
 }

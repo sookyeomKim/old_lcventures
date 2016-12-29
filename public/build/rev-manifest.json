@@ -2,11 +2,12 @@
   "css/adminApp.css": "css/adminApp-88859ed611.css",
   "css/adminDataTable.css": "css/adminDataTable-6cd566735a.css",
   "css/app.css": "css/app-b3bb09f840.css",
-  "css/baidu.css": "css/baidu-04bc73838b.css",
+  "css/baidu.css": "css/baidu-5c2dff69f7.css",
   "css/event.css": "css/event-e3ac8adf6e.css",
   "js/adminApp.js": "js/adminApp-15242fcb3c.js",
   "js/adminDataTable.js": "js/adminDataTable-2e8187f587.js",
-  "js/baidu.js": "js/baidu-cba9e42a40.js",
+  "js/baidu.js": "js/baidu-b71a2d39ee.js",
   "js/event.js": "js/event-71e336509c.js",
+  "js/jquery.placeholder.js": "js/jquery-a2cb42146d.placeholder.js",
   "js/vendor.js": "js/vendor-039467287a.js"
 }

@@ -130,7 +130,7 @@
                             <th class="right-col-th"><label for="c_crn">사업자등록번호</label></th>
                             <td>
                                 <input type="text" id="c_crn"
-                                       name="c_crn" class="c_crn baidu-reg-input" placeholder="ex)123-45-67890">
+                                       name="c_crn" class="c_crn baidu-reg-input" placeholder="ex)1234567890">
                                 <p class="error-message">
                                 </p>
                             </td>
@@ -305,30 +305,26 @@
                         <tr>
                             <th><label for="c_bl_img">사업자등록증</label></th>
                             <td>
-                                <div class="upload-wrap">
-                                    <div class="upload-text-wrap">
-                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
-                                        <p class="error-message">
-                                        </p>
-                                    </div>
-                                    <div class="upload-button-wrap">
-                                        <a>등록하기</a>
-                                        <input type="file" id="c_bl_img" name="c_bl_img" class="upload-button"/>
-                                    </div>
+                                <div class="upload-text-wrap">
+                                    <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                    <p class="error-message">
+                                    </p>
+                                </div>
+                                <div class="upload-button-wrap">
+                                    <a>등록하기</a>
+                                    <input type="file" id="c_bl_img" name="c_bl_img" class="upload-button"/>
                                 </div>
                             </td>
                             <th><label for="c_log_img">기업로고</label></th>
                             <td>
-                                <div class="upload-wrap">
-                                    <div class="upload-text-wrap">
-                                        <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
-                                        <p class="error-message">
-                                        </p>
-                                    </div>
-                                    <div class="upload-button-wrap">
-                                        <a>등록하기</a>
-                                        <input type="file" id="c_log_img" name="c_log_img" class="upload-button"/>
-                                    </div>
+                                <div class="upload-text-wrap">
+                                    <input type="text" class="upload-text" readonly placeholder="업로드 파일(JPG)">
+                                    <p class="error-message">
+                                    </p>
+                                </div>
+                                <div class="upload-button-wrap">
+                                    <a>등록하기</a>
+                                    <input type="file" id="c_log_img" name="c_log_img" class="upload-button"/>
                                 </div>
                             </td>
                         </tr>
@@ -342,7 +338,10 @@
         </div>
         <!-- //바디 영역 끝 -->
     </div>
-@endsection
+    @endsection
 @section('scripts')
+    <!--[if lte ie 9]>
+    <script src="{{elixir('js/jquery.placeholder.js')}}"></script>
+    <![endif]-->
     <script src="{{elixir('js/baidu.js')}}"></script>
 @endsection

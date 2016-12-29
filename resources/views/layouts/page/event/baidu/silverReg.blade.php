@@ -375,7 +375,10 @@
         </div>
         <!-- //바디 영역 끝 -->
     </div>
-@endsection
+    @endsection
 @section('scripts')
+    <!--[if lte ie 9]>
+    <script src="{{elixir('js/jquery.placeholder.js')}}"></script>
+    <![endif]-->
     <script src="{{elixir('js/baidu.js')}}"></script>
 @endsection

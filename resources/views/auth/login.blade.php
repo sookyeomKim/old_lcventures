@@ -1,9 +1,15 @@
 @extends('adminMaster')
-
+@section('styles')
+    <style>
+        .login-wrap{
+            margin-top: 50px;
+        }
+    </style>
+@endsection
 @section('contents')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2 login-wrap">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
